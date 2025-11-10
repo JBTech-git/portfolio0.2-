@@ -8,32 +8,32 @@ function Nav() {
     return () => window.removeEventListener('resize', onResize)
   }, [])
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white/70 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-900/40 backdrop-blur supports-[backdrop-filter]:bg-slate-900/30">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-3 items-center h-14">
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
-            <a href="#home" className="hover:text-slate-900">Home</a>
-            <a href="#about" className="hover:text-slate-900">About</a>
-            <a href="#services" className="hover:text-slate-900">Services</a>
-            <a href="#projects" className="hover:text-slate-900">Projects</a>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-300">
+            <a href="#home" className="hover:text-white">Home</a>
+            <a href="#about" className="hover:text-white">About</a>
+            <a href="#services" className="hover:text-white">Services</a>
+            <a href="#projects" className="hover:text-white">Projects</a>
           </nav>
-          <a href="#home" className="justify-self-center font-semibold text-slate-900 flex items-center gap-2">
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">JB</span>
+          <a href="#home" className="justify-self-center font-semibold text-slate-100 flex items-center gap-2">
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-sm text-white">JB</span>
             <span>Jayanta</span>
           </a>
-          <div className="justify-self-end">
-            <button onClick={() => setOpen(!open)} aria-label="Toggle Menu" className="md:hidden rounded border px-3 py-1.5 text-sm border-gray-200">Menu</button>
-            <a href="#contact" className="hidden md:inline-flex rounded-full border border-slate-200 px-4 py-1.5 text-sm shadow-sm hover:bg-slate-50">Contact</a>
+          <div className="justify-self-end flex items-center gap-2">
+            <button onClick={() => setOpen(!open)} aria-label="Toggle Menu" className="md:hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200 shadow-sm hover:bg-white/10">Menu</button>
+            <a href="#contact" className="hidden md:inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-slate-100 shadow-sm hover:bg-white/10 ring-1 ring-white/10">Contact</a>
           </div>
         </div>
         {open && (
           <div className="md:hidden pb-3">
-            <div className="flex flex-col gap-2 text-sm">
-              <a onClick={() => setOpen(false)} href="#home" className="opacity-80 hover:opacity-100">Home</a>
-              <a onClick={() => setOpen(false)} href="#about" className="opacity-80 hover:opacity-100">About</a>
-              <a onClick={() => setOpen(false)} href="#services" className="opacity-80 hover:opacity-100">Services</a>
-              <a onClick={() => setOpen(false)} href="#projects" className="opacity-80 hover:opacity-100">Projects</a>
-              <a onClick={() => setOpen(false)} href="#contact" className="opacity-80 hover:opacity-100">Contact</a>
+            <div className="flex flex-col gap-2 text-sm rounded-xl border border-white/10 bg-white/5 p-3 text-slate-200">
+              <a onClick={() => setOpen(false)} href="#home" className="hover:text-white">Home</a>
+              <a onClick={() => setOpen(false)} href="#about" className="hover:text-white">About</a>
+              <a onClick={() => setOpen(false)} href="#services" className="hover:text-white">Services</a>
+              <a onClick={() => setOpen(false)} href="#projects" className="hover:text-white">Projects</a>
+              <a onClick={() => setOpen(false)} href="#contact" className="hover:text-white">Contact</a>
             </div>
           </div>
         )}
@@ -123,62 +123,83 @@ function Connect() {
 function Journey() {
   const items = [
     {
-      org: 'Capital Numbers',
-      role: 'Software Engineer',
-      desc: 'Currently working as a Software Engineer, developing innovative solutions and contributing to cutting‑edge projects.',
-      badge: 'Current',
-      dates: 'Aug 2024 – Current',
-      location: 'Kolkata, India',
-      tone: 'from-blue-50 to-indigo-50'
-    },
-    {
-      org: 'Aeonix Research and Innovations',
-      role: 'Software Engineer',
-      desc: 'Worked as a Software Engineer, gaining experience in full‑stack development and modern technologies.',
-      badge: 'Professional',
-      dates: 'Nov 2022 – Aug 2024',
-      location: 'Kolkata, India',
-      tone: 'from-slate-50 to-slate-100'
-    },
-    {
-      org: 'Aeonix Research and Innovations',
-      role: 'Software Engineer (Intern)',
-      desc: 'Worked as an Intern, learning full‑stack development and modern technologies.',
-      badge: 'Professional',
-      dates: 'Nov 2022 – Aug 2024',
-      location: 'Kolkata, India',
-      tone: 'from-slate-50 to-slate-100'
+      org: 'Raiganj University',
+      role: 'Bachelor of Computer Applications (BCA)',
+      desc: '',
+      badge: 'Education',
+      dates: 'Aug 2018 – Aug 2021',
+      location: 'Raiganj, India'
     },
     {
       org: 'Brainware University',
-      role: 'Master of Computer Application',
-      desc: 'Completed MCA with strong fundamentals in CS concepts, software engineering, and modern development.',
+      role: 'Master of Computer Applications (MCA)',
+      desc: '',
       badge: 'Education',
       dates: 'Aug 2021 – Aug 2023',
-      location: 'Kolkata, India',
-      tone: 'from-rose-50 to-fuchsia-50'
+      location: 'Kolkata, India'
+    },
+    {
+      org: 'Leelija Web Solution Pvt Ltd',
+      role: 'Web Developer (Intern)',
+      desc: '',
+      badge: 'Professional',
+      dates: 'Oct 2023 – Mar 2024',
+      location: 'Kolkata, India'
+    },
+    {
+      org: 'Leelija Web Solution Pvt Ltd',
+      role: 'Full Stack Developer',
+      desc: '',
+      badge: 'Current',
+      dates: 'Apr 2024 – Current',
+      location: 'Kolkata, India'
     }
   ]
   return (
     <Section id="journey" className="pt-12">
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800">The Journey</h2>
-        <p className="mt-2 text-slate-600">A brief overview of my career path and experiences.</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">The Journey</h2>
+        <p className="mt-2 text-slate-300">A brief overview of my career path and experiences.</p>
       </div>
 
       <div className="relative mt-8">
-        <div className="pointer-events-none absolute left-0 right-0 top-1/2 -z-10 h-px bg-slate-200" />
-        <div className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
+        {/* edge fade masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#0b1220] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#0b1220] to-transparent" />
+        {/* timeline center line */}
+        <div className="pointer-events-none absolute left-0 right-0 top-1/2 -z-10 h-px bg-white/10" />
+
+        {/* carousel controls (bottom-right) */}
+        <div className="absolute right-2 bottom-2 z-20 flex items-center gap-2">
+          <button
+            type="button"
+            aria-label="Previous"
+            className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
+            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: -380, behavior: 'smooth' })}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-0.5"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button
+            type="button"
+            aria-label="Next"
+            className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
+            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: 380, behavior: 'smooth' })}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+
+        <div id="journey-scroller" className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
           {items.map((it, idx) => (
-            <article key={idx} className="snap-start shrink-0 w-[320px] md:w-[360px]">
-              <div className={`rounded-2xl border border-slate-200 bg-gradient-to-br ${it.tone} p-5 shadow-[0_10px_40px_-20px_rgba(2,6,23,0.2)]`}> 
+            <article key={idx} className="snap-center shrink-0 w-[320px] md:w-[360px]">
+              <div className={`rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-5 shadow-[0_10px_40px_-20px_rgba(2,6,23,0.5)] ring-1 ring-white/10 h-full min-h-[240px] flex flex-col`}>
                 <div className="flex items-center justify-between">
-                  <div className="text-sm text-slate-600">{it.org}</div>
-                  <span className="rounded-full bg-slate-900/5 text-xs px-2 py-0.5 text-slate-700">{it.badge}</span>
+                  <div className="text-sm text-slate-300">{it.org}</div>
+                  <span className="rounded-full bg-white/10 text-xs px-2 py-0.5 text-slate-200">{it.badge}</span>
                 </div>
-                <h3 className="mt-2 text-lg font-semibold text-slate-900">{it.role}</h3>
-                <p className="mt-2 text-sm text-slate-700">{it.desc}</p>
-                <div className="mt-4 flex items-center justify-between text-xs text-slate-600">
+                <h3 className="mt-2 text-lg font-semibold text-slate-100">{it.role}</h3>
+                <p className="mt-2 text-sm text-slate-300">{it.desc}</p>
+                <div className="mt-auto pt-3 flex items-center justify-between text-xs text-slate-400">
                   <span>📅 {it.dates}</span>
                   <span>📍 {it.location}</span>
                 </div>
@@ -201,6 +222,173 @@ function Section({ id, children, className = '' }: { id: string; children: React
 }
 
 function Hero() {
+  const skills = [
+    'React', 'Next.js', 'TypeScript', 'JavaScript', 'Node.js', 'Express', 'REST APIs', 'GraphQL',
+    'PostgreSQL', 'MongoDB', 'Prisma', 'Tailwind CSS', 'Redux', 'Jest', 'CI/CD', 'Docker', 'AWS'
+  ]
+  // Map skills to Simple Icons slugs
+  const skillSlug = (name: string) => {
+    switch (name) {
+      case 'React': return 'react'
+      case 'Next.js': return 'nextdotjs'
+      case 'TypeScript': return 'typescript'
+      case 'JavaScript': return 'javascript'
+      case 'Node.js': return 'nodedotjs'
+      case 'Express': return 'express'
+      case 'REST APIs': return 'swagger'
+      case 'GraphQL': return 'graphql'
+      case 'PostgreSQL': return 'postgresql'
+      case 'MongoDB': return 'mongodb'
+      case 'Prisma': return 'prisma'
+      case 'Tailwind CSS': return 'tailwindcss'
+      case 'Redux': return 'redux'
+      case 'Jest': return 'jest'
+      case 'CI/CD': return 'git'
+      case 'Docker': return 'docker'
+      case 'AWS': return 'amazonaws'
+      default: return ''
+    }
+  }
+  const skillIconUrls = (name: string) => {
+    const slug = skillSlug(name)
+    if (!slug) return null
+    return {
+      white: `https://cdn.simpleicons.org/${slug}/ffffff`,
+      brand: `https://cdn.simpleicons.org/${slug}`,
+    }
+  }
+  const skillIcon = (name: string) => {
+    switch (name) {
+      case 'React':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.4">
+            <circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none" className="opacity-90" />
+            <ellipse cx="12" cy="12" rx="9" ry="4.2" />
+            <ellipse cx="12" cy="12" rx="9" ry="4.2" transform="rotate(60 12 12)" />
+            <ellipse cx="12" cy="12" rx="9" ry="4.2" transform="rotate(-60 12 12)" />
+          </svg>
+        )
+      case 'Next.js':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-slate-200 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <path d="M4.5 6.5h15v11h-15z" className="opacity-30" />
+            <path d="M7 16l10-8" />
+            <path d="M11 8v8" className="opacity-70" />
+          </svg>
+        )
+      case 'TypeScript':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-blue-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <rect x="4" y="5" width="16" height="14" rx="2" className="opacity-40" />
+            <path d="M8 10h4M10 10v6" />
+          </svg>
+        )
+      case 'JavaScript':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-yellow-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <rect x="4" y="5" width="16" height="14" rx="2" className="opacity-40" />
+            <path d="M9 10v6M15 10c1.8 0 3 1 3 2.6 0 1.4-1.2 2.4-3 2.4" />
+          </svg>
+        )
+      case 'Node.js':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-emerald-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <polygon points="12,3 21,8 21,16 12,21 3,16 3,8" className="opacity-70" />
+          </svg>
+        )
+      case 'Express':
+        return (
+          <svg viewBox="0 0 24 24" className="h-5 w-5 text-white group-hover:text-slate-200" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <rect x="4" y="6" width="16" height="12" rx="2" className="opacity-50" />
+            <path d="M8 12h8" />
+          </svg>
+        )
+      case 'REST APIs':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <circle cx="7" cy="12" r="2.5" />
+            <circle cx="17" cy="12" r="2.5" />
+            <path d="M9.5 12H14.5" />
+          </svg>
+        )
+      case 'GraphQL':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-fuchsia-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <polygon points="12,4 20,8 20,16 12,20 4,16 4,8" className="opacity-60" />
+            <line x1="12" y1="4" x2="12" y2="20" />
+            <line x1="4" y1="8" x2="20" y2="16" />
+            <line x1="20" y1="8" x2="4" y2="16" />
+          </svg>
+        )
+      case 'PostgreSQL':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-sky-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <ellipse cx="12" cy="7" rx="7" ry="3" />
+            <path d="M5 7v6c0 1.7 3.1 3 7 3s7-1.3 7-3V7" />
+          </svg>
+        )
+      case 'MongoDB':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-emerald-300 transition-transform duration-200 group-hover:scale-110" fill="currentColor">
+            <path d="M12 3c2 3 3 6 3 9s-1 6-3 9c-2-3-3-6-3-9s1-6 3-9z" />
+          </svg>
+        )
+      case 'Prisma':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-200 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <polygon points="6,18 14,3 18,21" />
+          </svg>
+        )
+      case 'Tailwind CSS':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-300 transition-transform duration-200 group-hover:scale-110" fill="currentColor">
+            <path d="M12 7c-2 0-3 .9-4 2 1-1 2-1 3-.5C12 9 13 11 15 11c2 0 3-.9 4-2-1 1-2 1-3 .5C14 8 13 7 12 7zM7 13c-2 0-3 .9-4 2 1-1 2-1 3-.5C7 15 8 17 10 17c2 0 3-.9 4-2-1 1-2 1-3 .5C9 14 8 13 7 13z" />
+          </svg>
+        )
+      case 'Redux':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-violet-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <circle cx="8" cy="12" r="2" />
+            <circle cx="16" cy="9" r="2" />
+            <circle cx="14" cy="16" r="2" />
+            <path d="M9.5 13.5c1.5 2 3.5 3 6 2.5M14.5 7.5c-2-1-4.5-.5-6 1.5M6.5 11.5c-.5 2.2 1 4.3 3.2 5.3" />
+          </svg>
+        )
+      case 'Jest':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-rose-300 transition-transform duration-200 group-hover:scale-110" fill="currentColor">
+            <path d="M7 5l2 5 3-3 3 3 2-5-5 2-5-2z" />
+          </svg>
+        )
+      case 'CI/CD':
+        return (
+          <svg viewBox="0 0 24 24" className="h-5 w-5 text-white group-hover:text-slate-200" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <path d="M8 7h6l3 3-3 3H8l-3-3 3-3z" className="opacity-60" />
+            <path d="M10 4v3M14 17v3" />
+          </svg>
+        )
+      case 'Docker':
+        return (
+          <svg viewBox="0 0 24 24" className="h-5 w-5 text-white group-hover:text-sky-300" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <rect x="6" y="11" width="3" height="3" />
+            <rect x="10" y="11" width="3" height="3" />
+            <rect x="14" y="11" width="3" height="3" />
+            <rect x="10" y="7" width="3" height="3" />
+            <path d="M4 15c0 2.2 2 4 6 4h5c3 0 5-2 5-4" />
+          </svg>
+        )
+      case 'AWS':
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-orange-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <path d="M6 14a5 5 0 0 1 4-7 6 6 0 0 1 11 3c0 .3 0 .6-.1.9A4 4 0 0 1 19 18H8a4 4 0 0 1-2-4z" />
+          </svg>
+        )
+      default:
+        return (
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-400 to-cyan-400" />
+        )
+    }
+  }
   return (
     <Section id="home" className="relative overflow-hidden min-h-[90vh] md:min-h-screen flex items-center">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_50%_10%,rgba(99,102,241,0.08),transparent_60%)]" />
@@ -228,7 +416,7 @@ function Hero() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-white"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 1 1 8.293 11.293L10.586 13.586V4a1 1 0 0 1 1-1ZM5 20a1 1 0 0 1 0-2h14a1 1 0 1 1 0 2H5Z"/></svg>
           </a>
         </div>
-        <div className="mt-6 flex flex-col items-center justify-center gap-3 text-slate-400">
+        <div className="mt-6 flex flex-col items-center justify-center gap-3 text-slate-400 pb-20">
           <span className="text-lg font-bold">Find me on</span>
           <div className="flex items-center gap-2">
             <a aria-label="GitHub" href="#" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
@@ -240,6 +428,29 @@ function Hero() {
             <a aria-label="Twitter" href="#" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white"><path d="M17.316 6.246c-1.104.654-2.327 1.13-3.628 1.387a3.17 3.17 0 0 0-5.402 2.168c0 .248.03.49.085.722-2.634-.132-4.971-1.396-6.533-3.319a3.18 3.18 0 0 0-.43 1.595 3.17 3.17 0 0 0 1.41 2.641 3.155 3.155 0 0 1-1.437-.401v.04 a3.18 3.18 0 0 0 2.545 3.114 3.2 3.2 0 0 1-1.43.055 3.18 3.18 0 0 0 2.961 2.205 6.367 6.367 0 0 1-3.95 1.37c-.255 0-.507-.014-.754-.044a8.985 8.985 0 0 0 4.86 1.43c5.833 0 9.023-4.821 9.023-9.004 0-.137-.004-.274-.01-.41a6.421 6.421 0 0 0 1.575-1.627"/></svg>
             </a>
+          </div>
+        </div>
+        <div className="mt-10 marquee">
+          <div className="marquee-inner gap-3">
+            {[...skills, ...skills].map((s, i) => (
+              <span
+                key={`${s}-${i}`}
+                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-lg text-slate-100 whitespace-nowrap"
+              >
+                {(() => {
+                  const urls = skillIconUrls(s)
+                  return urls ? (
+                    <span className="relative inline-flex h-6 w-6 items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+                      <img src={urls.white} alt="" className="absolute inset-0 h-6 w-6 opacity-100 group-hover:opacity-0 transition-opacity duration-200" loading="lazy" />
+                      <img src={urls.brand} alt="" className="absolute inset-0 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200" loading="lazy" />
+                    </span>
+                  ) : (
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-400 to-cyan-400" />
+                  )
+                })()}
+                <span>{s}</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -284,7 +495,7 @@ function About() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(600px_300px_at_0%_0%,rgba(99,102,241,0.18),transparent_60%),radial-gradient(600px_300px_at_100%_100%,rgba(59,130,246,0.14),transparent_60%)]" />
       <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">About Me</h2>
-        <p className="mt-2 text-slate-300 max-w-2xl mx-auto">I'm a frontend engineer passionate about crafting user‑focused digital experiences that merge design and functionality seamlessly.</p>
+        <p className="mt-2 text-slate-300 max-w-2xl mx-auto">I'm a full stack developer passionate about building user-focused digital experiences that balance design, functionality, and performance.</p>
       </div>
       <div className="mt-10 grid gap-8 md:grid-cols-2 md:items-center">
         <div className="justify-self-center">
@@ -328,6 +539,16 @@ function About() {
                 ),
               },
               {
+                label: 'UI/UX Design',
+                icon: (
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
+                    <rect x="4" y="5" width="16" height="12" rx="2" className="opacity-70" />
+                    <rect x="6" y="7" width="6" height="4" fill="currentColor" stroke="none" className="opacity-25" />
+                    <path d="M14.2 9.2l2.8 2.8-1.8.6-.6 1.8-2.8-2.8z" fill="currentColor" stroke="none" className="opacity-90" />
+                  </svg>
+                ),
+              },
+              {
                 label: 'Team Collaboration',
                 icon: (
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
@@ -335,16 +556,6 @@ function About() {
                     <circle cx="7" cy="10.5" r="1.8" fill="currentColor" stroke="none" className="opacity-25" />
                     <circle cx="17" cy="10.5" r="1.8" fill="currentColor" stroke="none" className="opacity-25" />
                     <path d="M4.5 17.5c.7-2 3-3.2 5.3-3.2h4.4c2.3 0 4.6 1.2 5.3 3.2" strokeLinecap="round" className="opacity-70" />
-                  </svg>
-                ),
-              },
-              {
-                label: 'UI/UX Design',
-                icon: (
-                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
-                    <rect x="4" y="5" width="16" height="12" rx="2" className="opacity-70" />
-                    <rect x="6" y="7" width="6" height="4" fill="currentColor" stroke="none" className="opacity-25" />
-                    <path d="M14.2 9.2l2.8 2.8-1.8.6-.6 1.8-2.8-2.8z" fill="currentColor" stroke="none" className="opacity-90" />
                   </svg>
                 ),
               },
@@ -501,25 +712,104 @@ function Skills() {
 
 function Services() {
   const services = [
-    { title: 'Web Development', desc: 'Building fast, accessible, and responsive web apps.' },
-    { title: 'UI Engineering', desc: 'Implementing pixel‑perfect, scalable design systems.' },
-    { title: 'Performance Tuning', desc: 'Auditing and optimizing Core Web Vitals.' },
-    { title: 'Backend APIs', desc: 'Designing REST/GraphQL services with best practices.' },
+    { title: 'Web Development', desc: 'Building fast, accessible, and responsive web apps.', tags: ['React', 'Next.js', 'TypeScript'] },
+    { title: 'UI Engineering', desc: 'Implementing pixel‑perfect, scalable design systems.', tags: ['Design Systems', 'Tailwind', 'A11y'] },
+    { title: 'Performance Tuning', desc: 'Auditing and optimizing Core Web Vitals.', tags: ['Lighthouse', 'CWV', 'Caching'] },
+    { title: 'Backend APIs', desc: 'Designing REST/SQL services with best practices.', tags: ['Node', 'Express', 'SQL'] },
+    { title: 'Cross-browser Compatibility', desc: 'Consistent UX across Chrome, Firefox, Safari, and Edge with thorough testing.', tags: ['Chrome', 'Firefox', 'Safari', 'Edge'] },
+    { title: 'SEO Optimization', desc: 'Improve discoverability with technical SEO, structured data, and fast performance.', tags: ['Meta Tags', 'Sitemap', 'Structured Data', 'Performance'] },
   ]
+  const serviceIcon = (title: string) => {
+    switch (title) {
+      case 'Web Development':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-7 w-7 text-white transition-transform duration-200 group-hover:scale-110 group-hover:text-cyan-300">
+            <circle cx="12" cy="12" r="9" className="opacity-60" />
+            <path d="M3 12h18M12 3a17 17 0 0 0 0 18M12 3a17 17 0 0 1 0 18" />
+          </svg>
+        )
+      case 'UI Engineering':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-7 w-7 text-white transition-transform duration-200 group-hover:scale-110 group-hover:text-fuchsia-300">
+            <rect x="4" y="6" width="16" height="12" rx="2" />
+            <path d="M4 10h16M8 14h4" />
+          </svg>
+        )
+      case 'Performance Tuning':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-7 w-7 text-white transition-transform duration-200 group-hover:scale-110 group-hover:text-emerald-300">
+            <circle cx="12" cy="12" r="8" />
+            <path d="M12 12l4-3M7 15a7 7 0 0 1 10 0" />
+          </svg>
+        )
+      case 'Backend APIs':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-7 w-7 text-white transition-transform duration-200 group-hover:scale-110 group-hover:text-indigo-300">
+            <rect x="4" y="6" width="16" height="12" rx="2" className="opacity-70" />
+            <path d="M8 12h8M6 9h12M6 15h12" />
+          </svg>
+        )
+      case 'Cross-browser Compatibility':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-7 w-7 text-white transition-transform duration-200 group-hover:scale-110 group-hover:text-sky-300">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 9h18" className="opacity-70" />
+            <circle cx="7" cy="7" r=".8" fill="currentColor" />
+            <circle cx="10" cy="7" r=".8" fill="currentColor" />
+            <path d="M8 14l2 2 4-4" />
+          </svg>
+        )
+      case 'SEO Optimization':
+        return (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-7 w-7 text-white transition-transform duration-200 group-hover:scale-110 group-hover:text-amber-300">
+            <circle cx="10" cy="10" r="5" />
+            <path d="M14.5 14.5L20 20" />
+            <path d="M7.5 10h5M10 7.5v5" className="opacity-70" />
+          </svg>
+        )
+      default:
+        return (
+          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white" />
+        )
+    }
+  }
   return (
-    <Section id="services">
-      <h2 className="text-3xl font-bold">Services</h2>
-      <p className="mt-2 text-slate-600">How I can help your team ship great products.</p>
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {services.map((s) => (
-          <div key={s.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <div className="flex items-start gap-3">
-              <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-indigo-600">★</span>
+    <Section id="services" className="relative bg-[linear-gradient(180deg,#0b1220_0%,#0f1b33_50%,#0b1220_100%)]">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(520px_320px_at_12%_0%,rgba(99,102,241,0.14),transparent_60%),radial-gradient(500px_340px_at_88%_8%,rgba(168,85,247,0.12),transparent_60%),radial-gradient(700px_520px_at_50%_115%,rgba(56,189,248,0.1),transparent_70%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_40%),radial-gradient(600px_300px_at_20%_10%,rgba(147,51,234,0.12),transparent_60%),radial-gradient(700px_360px_at_80%_0%,rgba(56,189,248,0.10),transparent_65%)]" />
+      {/* Centered white-blue-pink light */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-[14%] -translate-x-1/2 h-[560px] w-[900px] rounded-full blur-2xl opacity-90 bg-[radial-gradient(800px_520px_at_center,rgba(255,255,255,0.24)_0%,rgba(59,130,246,0.22)_42%,rgba(236,72,153,0.20)_75%,rgba(255,255,255,0)_78%)]" />
+      </div>
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.18),transparent_60%)]" />
+        <div className="absolute -bottom-24 left-10 h-[420px] w-[420px] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.16),transparent_60%)]" />
+        <div className="absolute -bottom-16 right-10 h-[380px] w-[380px] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.16),transparent_60%)]" />
+      </div>
+      <div className="text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">Services</h2>
+        <p className="mt-2 text-slate-300 max-w-2xl mx-auto text-sm md:text-base">How I can help your team ship great products.</p>
+      </div>
+      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+        {services.map((s, i) => (
+          <div
+            key={s.title}
+            className="group relative h-full min-h-[200px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-6 shadow-[0_12px_50px_-20px_rgba(2,6,23,0.5)] ring-1 ring-white/10 transition-all hover:translate-y-[-2px] hover:ring-white/20 hover:shadow-[0_20px_60px_-20px_rgba(34,211,238,0.25)] animate-fade-in-up flex flex-col"
+            style={{ animationDelay: `${i * 80}ms` }}
+          >
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(420px_240px_at_0%_0%,rgba(99,102,241,0.08),transparent_60%),radial-gradient(420px_240px_at_100%_100%,rgba(34,211,238,0.08),transparent_60%)]" />
+            <div className="pointer-events-none absolute -inset-px -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(120px_120px_at_20%_15%,rgba(255,255,255,0.18),transparent_60%),radial-gradient(180px_140px_at_80%_85%,rgba(255,255,255,0.12),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+            <div className="flex flex-col items-center text-center gap-3">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/25 via-fuchsia-500/20 to-cyan-400/25 ring-1 ring-white/10">
+                {serviceIcon(s.title)}
+              </span>
               <div>
-                <h3 className="text-lg font-semibold">{s.title}</h3>
-                <p className="mt-1 text-sm text-slate-600">{s.desc}</p>
+                <h3 className="text-lg md:text-xl font-semibold text-slate-100">{s.title}</h3>
+                <p className="mt-1 text-sm md:text-base text-slate-300">{s.desc}</p>
               </div>
             </div>
+            <div className="mt-2" />
           </div>
         ))}
       </div>

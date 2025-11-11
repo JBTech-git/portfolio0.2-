@@ -19,7 +19,7 @@ function Nav() {
           </nav>
           <a href="#home" className="justify-self-center font-semibold text-slate-100 flex items-center gap-2">
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-sm text-white">JB</span>
-            <span>Jayanta</span>
+            <span>Jayanta Barman</span>
           </a>
           <div className="justify-self-end flex items-center gap-2">
             <button onClick={() => setOpen(!open)} aria-label="Toggle Menu" className="md:hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200 shadow-sm hover:bg-white/10">Menu</button>
@@ -49,7 +49,7 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           <div>
             <div className="text-sm text-slate-400">Best regards</div>
-            <div className="mt-1 text-2xl font-extrabold">Jayanta</div>
+            <div className="mt-1 text-2xl font-extrabold">Jayanta Barman</div>
             <p className="mt-3 max-w-xs text-sm text-slate-400">Reach out and let’s discuss how I can contribute to your team or product.</p>
           </div>
           <div>
@@ -66,20 +66,20 @@ function Footer() {
             <div className="font-semibold text-slate-100">Contact Me</div>
             <ul className="mt-3 space-y-2 text-sm text-slate-300">
               <li>Kolkata, West Bengal, India</li>
-              <li>Email: <a href="mailto:you@example.com" className="hover:text-white underline decoration-slate-600">you@example.com</a></li>
-              <li>Phone: <a href="tel:+910000000000" className="hover:text-white">+91 0000000000</a></li>
+              <li>Email: <a href="mailto:bjayanta584@gmail.com" className="hover:text-white underline decoration-slate-600">bjayanta584@gmail.com</a></li>
+              <li>Phone: <a href="tel:+918388988586" className="hover:text-white">+91 8388988586</a></li>
             </ul>
           </div>
           <div>
             <div className="font-semibold text-slate-100">Follow Me</div>
             <div className="mt-3 flex gap-3">
-              <a aria-label="GitHub" href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
+              <a aria-label="GitHub" href="https://github.com/JBTech-git" target="_blank" rel="noreferrer noopener" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.486 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.158-1.11-1.468-1.11-1.468-.908-.62.069-.607.069-.607 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.27.098-2.646 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.296 2.748-1.026 2.748-1.026.546 1.376.203 2.393.1 2.646.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.92.678 1.855 0 1.339-.012 2.419-.012 2.747 0 .268.18.579.688.48C19.138 20.194 22 16.44 22 12.017 22 6.486 17.523 2 12 2Z" clipRule="evenodd"/></svg>
               </a>
-              <a aria-label="LinkedIn" href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
+              <a aria-label="LinkedIn" href="https://www.linkedin.com/in/jayanta-barman-747298211" target="_blank" rel="noreferrer noopener" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.026-3.058-1.862-3.058-1.863 0-2.149 1.454-2.149 2.957v5.705h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.843-1.563 3.041 0 3.604 2.003 3.604 4.609v5.587z"/></svg>
               </a>
-              <a aria-label="Email" href="mailto:you@example.com" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
+              <a aria-label="Email" href="mailto:bjayanta584@gmail.com" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.2-.5 7.06 5.292a1 1 0 0 0 1.24 0L19.56 6H4.2Z"/></svg>
               </a>
             </div>
@@ -92,27 +92,103 @@ function Footer() {
             <a href="#" className="hover:text-slate-200">Privacy Policy</a>
             <a href="#" className="hover:text-slate-200">Terms of Service</a>
           </div>
+          </div>
         </div>
-      </div>
     </footer>
   )
 }
 
 function Connect() {
   return (
-    <Section id="connect" className="pt-8">
-      <div className="rounded-[24px] border border-slate-200 bg-gradient-to-b from-rose-50 via-indigo-50 to-blue-50 shadow-[0_20px_60px_-30px_rgba(2,6,23,0.3)] p-8 md:p-12">
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="inline-flex rounded-full border border-slate-200 bg-white/60 px-3 py-1 text-xs text-slate-700">Get in Touch</span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">Let’s Connect</h2>
-          <p className="mt-3 text-slate-600">Interested in working together? I’m available for freelance projects and full‑time roles. Reach out and let’s discuss how I can contribute to your team or product.</p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-slate-700">
-            <div className="inline-flex items-center gap-2"><span>✉️</span><a href="mailto:you@example.com" className="underline decoration-slate-300 hover:text-slate-900">you@example.com</a></div>
-            <div className="inline-flex items-center gap-2"><span>📍</span><span>Kolkata, West Bengal, IN</span></div>
-          </div>
-          <div className="mt-6 flex justify-center gap-3">
-            <a href="#contact" className="inline-flex items-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm shadow-sm hover:bg-slate-50">Schedule a call</a>
-            <a href="mailto:you@example.com" className="inline-flex items-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-600 text-white px-5 py-2.5 text-sm shadow-[inset_0_-3px_0_rgba(0,0,0,0.15)] hover:from-indigo-600 hover:to-blue-700">Send email →</a>
+    <Section id="connect" className="pt-12 relative">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(700px_380px_at_12%_-10%,rgba(168,85,247,0.16),transparent_60%),radial-gradient(700px_380px_at_88%_-10%,rgba(34,211,238,0.14),transparent_60%)]" />
+      <div className="relative max-w-4xl mx-auto">
+        {/* top-centered violet/indigo glow with subtle stars */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-0"
+          style={{
+            background: [
+              'radial-gradient(620px 220px at 50% -8%, rgba(168,85,247,0.55), rgba(99,102,241,0.38) 48%, transparent 72%)',
+              'radial-gradient(1px 1px at 35% 12%, rgba(255,255,255,0.6), transparent 50%)',
+              'radial-gradient(1px 1px at 58% 6%, rgba(255,255,255,0.5), transparent 50%)',
+              'radial-gradient(1px 1px at 44% 10%, rgba(255,255,255,0.4), transparent 50%)',
+              'radial-gradient(1px 1px at 65% 14%, rgba(255,255,255,0.45), transparent 50%)',
+            ].join(', '),
+          }}
+        />
+        {/* outside-border halo */}
+        <div
+          className="pointer-events-none absolute -inset-10 z-10 rounded-[40px] blur-3xl opacity-95"
+          style={{
+            background: [
+              'radial-gradient(680px 340px at 50% -12%, rgba(255,255,255,0.28), transparent 72%)',
+              'radial-gradient(600px 300px at 50% -10%, rgba(168,85,247,0.30), rgba(99,102,241,0.24) 45%, transparent 78%)',
+              'radial-gradient(500px 280px at -10% 18%, rgba(34,211,238,0.22), transparent 70%)',
+              'radial-gradient(500px 280px at 110% 18%, rgba(236,72,153,0.20), transparent 70%)',
+              'radial-gradient(520px 320px at 0% 110%, rgba(255,255,255,0.12), transparent 75%)',
+              'radial-gradient(520px 320px at 100% 110%, rgba(255,255,255,0.12), transparent 75%)',
+            ].join(', '),
+          }}
+        />
+        {/* gradient border wrapper */}
+        <div className="relative z-20 overflow-hidden rounded-[24px] p-[1.5px] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(255,255,255,0.65),rgba(34,211,238,0.55),rgba(236,72,153,0.5),rgba(255,255,255,0.65))] shadow-[0_20px_80px_-28px_rgba(2,6,23,0.75)]">
+          {/* glass inner card */}
+          <div className="rounded-[22px] border border-white/10 bg-slate-950/60 ring-1 ring-white/10 backdrop-blur-md p-8 md:p-12 relative overflow-hidden">
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] text-slate-200">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                Get in Touch
+              </span>
+              <h2 className="mt-4 text-3xl md:text-4xl font-extrabold text-slate-100">Let’s Connect</h2>
+              <p className="mt-3 text-slate-300">Interested in working together? I’m available for freelance projects and full‑time roles. Let’s chat about how I can help your product ship faster with great UX.</p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-slate-300 text-sm md:text-base">
+                <div className="inline-flex items-center gap-2">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 7 9-7" />
+                  </svg>
+                  <span>bjayanta584@gmail.com</span>
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z" />
+                    <circle cx="12" cy="11" r="2.5" />
+                  </svg>
+                  <span>Kolkata, West Bengal, IN</span>
+                </div>
+              </div>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                <a href="#contact" className="inline-flex h-10 min-w-[170px] items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 text-base font-semibold text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white ring-1 ring-white/10 hover:bg-white/15">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <rect x="3" y="5" width="18" height="16" rx="2" />
+                    <path d="M3 9h18" />
+                    <circle cx="7" cy="7" r="1" fill="currentColor" stroke="none" />
+                    <circle cx="11" cy="7" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                  Schedule a call
+                </a>
+                <a href="mailto:bjayanta584@gmail.com?subject=Hello%20Jayanta%20-%20Hiring%20inquiry&body=Hello%20Jayanta,%0D%0A%0D%0AWe%20would%20like%20to%20explore%20hiring%20you%20for%20our%20team%2Fcompany.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%20I%20can%20share%20scope,%20timeline,%20and%20budget%20details.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]%0D%0A[Company]%0D%0A[Phone]" className="inline-flex h-10 min-w-[170px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white px-5 text-base font-semibold shadow-[inset_0_-3px_0_rgba(0,0,0,0.15)] hover:from-indigo-600 hover:via-fuchsia-600 hover:to-cyan-500">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+                    <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.2-.5 7.06 5.292a1 1 0 0 0 1.24 0L19.56 6H4.2Z"/>
+                  </svg>
+                  Send email
+                </a>
+              </div>
+              <div className="mt-8 flex justify-center gap-4">
+                <a href="https://github.com/JBTech-git" target="_blank" rel="noreferrer noopener" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white ring-1 ring-white/10 hover:bg-white/15">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.486 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.158-1.11-1.468-1.11-1.468-.908-.62.069-.607.069-.607 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.27.098-2.646 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.296 2.748-1.026 2.748-1.026.546 1.376.203 2.393.1 2.646.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.92.678 1.855 0 1.339-.012 2.419-.012 2.747 0 .268.18.579.688.48C19.138 20.194 22 16.44 22 12.017 22 6.486 17.523 2 12 2Z" clipRule="evenodd"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/jayanta-barman-747298211" target="_blank" rel="noreferrer noopener" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white ring-1 ring-white/10 hover:bg-white/15">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.026-3.058-1.862-3.058-1.863 0-2.149 1.454-2.149 2.957v5.705h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.843-1.563 3.041 0 3.604 2.003 3.604 4.609v5.587z"/></svg>
+                </a>
+                <a href="https://wa.me/918388988586" target="_blank" rel="noreferrer noopener" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white ring-1 ring-white/10 hover:bg-white/15" title="WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+                    <path d="M20.52 3.484A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.095.547 4.142 1.588 5.945L0 24l6.305-1.654a11.86 11.86 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.892-11.893a11.82 11.82 0 00-3.465-8.417zM12.05 22.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.257c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.114 1.03 6.971 2.888a9.825 9.825 0 012.913 6.994c-.003 5.45-4.437 9.884-9.888 9.884z"/>
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.15-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.672-1.611-.922-2.21-.242-.579-.487-.5-.672-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -125,7 +201,7 @@ function Journey() {
     {
       org: 'Raiganj University',
       role: 'Bachelor of Computer Applications (BCA)',
-      desc: '',
+      desc: 'Foundation in programming, data structures, DBMS, and web fundamentals.',
       badge: 'Education',
       dates: 'Aug 2018 – Aug 2021',
       location: 'Raiganj, India'
@@ -133,7 +209,7 @@ function Journey() {
     {
       org: 'Brainware University',
       role: 'Master of Computer Applications (MCA)',
-      desc: '',
+      desc: 'Advanced CS curriculum with emphasis on software engineering and modern stacks.',
       badge: 'Education',
       dates: 'Aug 2021 – Aug 2023',
       location: 'Kolkata, India'
@@ -141,7 +217,7 @@ function Journey() {
     {
       org: 'Leelija Web Solution Pvt Ltd',
       role: 'Web Developer (Intern)',
-      desc: '',
+      desc: 'Hands-on exposure to real projects, UI work, and collaborative delivery.',
       badge: 'Professional',
       dates: 'Oct 2023 – Mar 2024',
       location: 'Kolkata, India'
@@ -149,7 +225,7 @@ function Journey() {
     {
       org: 'Leelija Web Solution Pvt Ltd',
       role: 'Full Stack Developer',
-      desc: '',
+      desc: 'Building scalable features end-to-end across frontend and backend.',
       badge: 'Current',
       dates: 'Apr 2024 – Current',
       location: 'Kolkata, India'
@@ -169,13 +245,14 @@ function Journey() {
         {/* timeline center line */}
         <div className="pointer-events-none absolute left-0 right-0 top-1/2 -z-10 h-px bg-white/10" />
 
+
         {/* carousel controls (bottom-right) */}
         <div className="absolute right-2 bottom-2 z-20 flex items-center gap-2">
           <button
             type="button"
             aria-label="Previous"
             className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
-            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: -380, behavior: 'smooth' })}
+            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: 380, behavior: 'smooth' })}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-0.5"><path d="M15 6l-6 6 6 6"/></svg>
           </button>
@@ -183,19 +260,31 @@ function Journey() {
             type="button"
             aria-label="Next"
             className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
-            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: 380, behavior: 'smooth' })}
+            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: -380, behavior: 'smooth' })}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5"><path d="M9 6l6 6-6 6"/></svg>
           </button>
         </div>
 
-        <div id="journey-scroller" className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
+        <div id="journey-scroller" className="relative z-10 flex flex-row-reverse gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
           {items.map((it, idx) => (
             <article key={idx} className="snap-center shrink-0 w-[320px] md:w-[360px]">
               <div className={`rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-5 shadow-[0_10px_40px_-20px_rgba(2,6,23,0.5)] ring-1 ring-white/10 h-full min-h-[240px] flex flex-col`}>
                 <div className="flex items-center justify-between">
                   <div className="text-sm text-slate-300">{it.org}</div>
-                  <span className="rounded-full bg-white/10 text-xs px-2 py-0.5 text-slate-200">{it.badge}</span>
+                  <span
+                    className={`inline-flex items-center gap-1.5 rounded-full text-xs px-2.5 py-0.5 ${String(it.badge).toLowerCase().includes('current')
+                      ? 'bg-gradient-to-r from-emerald-500/20 to-cyan-400/20 text-emerald-200 ring-1 ring-emerald-400/40 shadow-[0_0_18px_rgba(16,185,129,0.35)]'
+                      : 'bg-white/10 text-slate-200'}`}
+                    tabIndex={String(it.badge).toLowerCase().includes('current') ? 0 : -1}
+                    aria-label={String(it.badge).toLowerCase().includes('current') ? 'Current role' : undefined}
+                    role={String(it.badge).toLowerCase().includes('current') ? 'status' : undefined}
+                  >
+                    {String(it.badge).toLowerCase().includes('current') && (
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" aria-hidden />
+                    )}
+                    {it.badge}
+                  </span>
                 </div>
                 <h3 className="mt-2 text-lg font-semibold text-slate-100">{it.role}</h3>
                 <p className="mt-2 text-sm text-slate-300">{it.desc}</p>
@@ -419,14 +508,17 @@ function Hero() {
         <div className="mt-6 flex flex-col items-center justify-center gap-3 text-slate-400 pb-20">
           <span className="text-lg font-bold">Find me on</span>
           <div className="flex items-center gap-2">
-            <a aria-label="GitHub" href="#" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
+            <a aria-label="GitHub" href="https://github.com/JBTech-git" target="_blank" rel="noreferrer noopener" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.486 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.158-1.11-1.468-1.11-1.468-.908-.62.069-.607.069-.607 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.27.098-2.646 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.296 2.748-1.026 2.748-1.026.546 1.376.203 2.393.1 2.646.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.92.678 1.855 0 1.339-.012 2.419-.012 2.747 0 .268.18.579.688.48C19.138 20.194 22 16.44 22 12.017 22 6.486 17.523 2 12 2Z" clipRule="evenodd"/></svg>
             </a>
-            <a aria-label="LinkedIn" href="#" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/jayanta-barman-747298211" target="_blank" rel="noreferrer noopener" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.026-3.058-1.862-3.058-1.863 0-2.149 1.454-2.149 2.957v5.705h-3v-10h2.881 v1.367h.041c.401-.761 1.381-1.563 2.843-1.563 3.041 0 3.604 2.003 3.604 4.609v5.587z"/></svg>
             </a>
-            <a aria-label="Twitter" href="#" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white"><path d="M17.316 6.246c-1.104.654-2.327 1.13-3.628 1.387a3.17 3.17 0 0 0-5.402 2.168c0 .248.03.49.085.722-2.634-.132-4.971-1.396-6.533-3.319a3.18 3.18 0 0 0-.43 1.595 3.17 3.17 0 0 0 1.41 2.641 3.155 3.155 0 0 1-1.437-.401v.04 a3.18 3.18 0 0 0 2.545 3.114 3.2 3.2 0 0 1-1.43.055 3.18 3.18 0 0 0 2.961 2.205 6.367 6.367 0 0 1-3.95 1.37c-.255 0-.507-.014-.754-.044a8.985 8.985 0 0 0 4.86 1.43c5.833 0 9.023-4.821 9.023-9.004 0-.137-.004-.274-.01-.41a6.421 6.421 0 0 0 1.575-1.627"/></svg>
+            <a aria-label="WhatsApp" href="https://wa.me/918388988586" target="_blank" rel="noreferrer noopener" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white" aria-hidden="true">
+                <path d="M20.52 3.484A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.095.547 4.142 1.588 5.945L0 24l6.305-1.654a11.86 11.86 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.892-11.893a11.82 11.82 0 00-3.465-8.417zM12.05 22.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.257c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.114 1.03 6.971 2.888a9.825 9.825 0 012.913 6.994c-.003 5.45-4.437 9.884-9.888 9.884z"/>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.15-.198.297-.768.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.672-1.611-.922-2.21-.242-.579-.487-.5-.672-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+              </svg>
             </a>
           </div>
         </div>
@@ -464,27 +556,107 @@ function Projects() {
     { title: 'Project Two', desc: 'Full‑stack app with API integration and CI/CD.', link: '#', tags: ['Next.js','TypeScript'] },
     { title: 'Project Three', desc: 'Design system components and docs.', link: '#', tags: ['Storybook','UI'] },
   ]
+  const [open, setOpen] = useState<null | { title: string; desc: string; link: string; tags: string[] }>(null)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(null)
+    }
+    if (open) {
+      document.addEventListener('keydown', onKey)
+      const prev = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.removeEventListener('keydown', onKey)
+        document.body.style.overflow = prev
+      }
+    }
+  }, [open])
   return (
-    <Section id="projects">
-      <h2 className="text-3xl font-bold">Projects</h2>
-      <p className="mt-2 text-slate-600">Selected work demonstrating product thinking and craft.</p>
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {items.map(p => (
-          <a key={p.title} href={p.link} className="group block rounded-xl border border-slate-200 p-5 hover:shadow-sm transition bg-white">
-            <div className="h-40 rounded-lg bg-slate-100 mb-4" />
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="text-xl font-semibold group-hover:underline">{p.title}</h3>
-              <span className="text-xs opacity-60">Case Study</span>
+    <Section id="projects" className="relative">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(520px_320px_at_15%_0%,rgba(168,85,247,0.14),transparent_60%),radial-gradient(520px_320px_at_85%_-5%,rgba(34,211,238,0.12),transparent_60%)]" />
+      <div className="text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">Projects</h2>
+        <p className="mt-2 text-slate-300">Selected work demonstrating product thinking and craft.</p>
+      </div>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((p, i) => (
+          <button
+            key={p.title}
+            onClick={() => setOpen(p)}
+            className="cursor-pointer text-left group relative overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-4 ring-1 ring-white/10 shadow-[0_12px_40px_-22px_rgba(2,6,23,0.6)] transition-all hover:translate-y-[-2px] hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-300/50"
+            style={{
+              animationDelay: `${i * 80}ms`,
+              background:
+                'linear-gradient(180deg, rgba(17,24,39,0.85) 0%, rgba(15,23,42,0.85) 100%), radial-gradient(150% 130% at 50% -30%, rgba(255,255,255,0.22), transparent 58%), radial-gradient(130% 110% at 50% -20%, rgba(99,102,241,0.18), transparent 60%), radial-gradient(120% 110% at 50% 120%, rgba(34,211,238,0.18), transparent 65%)',
+              boxShadow:
+                'inset 0 0 0 1px rgba(255,255,255,0.14), 0 0 28px 6px rgba(255,255,255,0.10), 0 0 36px 6px rgba(99,102,241,0.18)',
+            }}
+          >
+            <div className="relative mb-4 h-40 overflow-hidden rounded-lg">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-fuchsia-500/20 to-cyan-400/20" />
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(240px_160px_at_20%_20%,rgba(255,255,255,0.22),transparent_60%),radial-gradient(280px_200px_at_80%_80%,rgba(255,255,255,0.16),transparent_60%)]" />
+              <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/30 to-transparent" />
             </div>
-            <p className="mt-2 text-sm text-slate-600">{p.desc}</p>
+            <div className="flex items-start justify-between gap-4">
+              <h3 className="text-lg md:text-xl font-semibold text-slate-100">{p.title}</h3>
+              <span className="rounded-full border border-white/10 bg-white/10 px-2 py-0.5 text-[10px] text-slate-200">Case Study</span>
+            </div>
+            <p className="mt-2 text-sm text-slate-300">{p.desc}</p>
             <div className="mt-3 flex flex-wrap gap-2 text-xs">
               {p.tags.map(t => (
-                <span key={t} className="rounded-full border border-slate-200 px-2 py-0.5">{t}</span>
+                <span key={t} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-200">{t}</span>
               ))}
             </div>
-          </a>
+          </button>
         ))}
       </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          aria-modal="true"
+          role="dialog"
+          aria-labelledby="project-modal-title"
+          onClick={(e) => { if (e.target === e.currentTarget) setOpen(null) }}
+        >
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+          <div className="relative z-[61] w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/10 ring-1 ring-white/10 shadow-[0_30px_120px_-20px_rgba(2,6,23,0.8)]">
+            <div className="relative h-48 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/25 via-fuchsia-500/20 to-cyan-400/25" />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+            <div className="p-5">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 id="project-modal-title" className="text-xl font-semibold text-slate-100">{open.title}</h3>
+                  <p className="mt-1 text-sm text-slate-300">{open.desc}</p>
+                </div>
+                <button onClick={() => setOpen(null)} aria-label="Close" className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 text-slate-200 hover:bg-white/15">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {open.tags?.map(t => (
+                  <span key={t} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-200">{t}</span>
+                ))}
+              </div>
+
+              <div className="mt-6 flex items-center gap-3">
+                <a
+                  href={open.link}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-sm font-medium text-slate-100 ring-1 ring-white/10 hover:bg-white/15"
+                >
+                  <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" className="h-5 w-5" />
+                  View project
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </Section>
   )
 }
@@ -500,9 +672,9 @@ function About() {
       <div className="mt-10 grid gap-8 md:grid-cols-2 md:items-center">
         <div className="justify-self-center">
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_30px_-20px_rgba(255,255,255,0.25)]">
-            {/* Replace /profile.jpg with your photo in public/ */}
-            <img src="/profile.jpg" alt="Profile" className="h-[360px] w-[280px] object-cover md:h-[420px] md:w-[320px]" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
-            <div className="h-[360px] w-[280px] md:h-[420px] md:w-[320px] flex items-center justify-center text-slate-400" aria-hidden>Upload profile.jpg</div>
+            {/* Replace /profile-pic.png with your photo in public/ if needed */}
+            <img src="/profile-pic.png" alt="Profile" className="h-[360px] w-[280px] object-cover md:h-[420px] md:w-[320px]" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
+            {/* <div className="h-[360px] w-[280px] md:h-[420px] md:w-[320px] flex items-center justify-center text-slate-400" aria-hidden>Upload profile-pic.png</div> */}
           </div>
         </div>
         <div>
@@ -591,8 +763,8 @@ function Skills() {
   const [activeTab, setActiveTab] = useState<'Frontend' | 'Backend' | 'Soft Skills'>('Frontend')
   const [imageError, setImageError] = useState(false)
   const frontendList = [
-    'React & Next.js',
-    'TypeScript & JavaScript',
+    'React',
+    'JavaScript',
     'Tailwind CSS & Styled Components',
     'Redux & Context API',
     'Responsive Design',
@@ -601,13 +773,13 @@ function Skills() {
     'UI/UX Implementation',
   ]
   const backendList = [
+    'Python & Django',
     'Node.js & Express',
-    'REST & GraphQL APIs',
-    'PostgreSQL & MongoDB',
+    'REST APIs',
+    'SQL & MongoDB',
     'Authentication & Authorization',
-    'ORMs (Prisma/Sequelize/Mongoose)',
     'Caching & Queues (Redis)',
-    'Testing (Jest/Supertest)',
+    'Testing',
     'Deployment & CI/CD',
   ]
   const softSkillsList = [
@@ -713,9 +885,9 @@ function Skills() {
 function Services() {
   const services = [
     { title: 'Web Development', desc: 'Building fast, accessible, and responsive web apps.', tags: ['React', 'Next.js', 'TypeScript'] },
+    { title: 'Backend APIs', desc: 'Designing REST/SQL services with best practices.', tags: ['Node', 'Express', 'SQL'] },
     { title: 'UI Engineering', desc: 'Implementing pixel‑perfect, scalable design systems.', tags: ['Design Systems', 'Tailwind', 'A11y'] },
     { title: 'Performance Tuning', desc: 'Auditing and optimizing Core Web Vitals.', tags: ['Lighthouse', 'CWV', 'Caching'] },
-    { title: 'Backend APIs', desc: 'Designing REST/SQL services with best practices.', tags: ['Node', 'Express', 'SQL'] },
     { title: 'Cross-browser Compatibility', desc: 'Consistent UX across Chrome, Firefox, Safari, and Edge with thorough testing.', tags: ['Chrome', 'Firefox', 'Safari', 'Edge'] },
     { title: 'SEO Optimization', desc: 'Improve discoverability with technical SEO, structured data, and fast performance.', tags: ['Meta Tags', 'Sitemap', 'Structured Data', 'Performance'] },
   ]
@@ -777,20 +949,27 @@ function Services() {
     <Section id="services" className="relative bg-[linear-gradient(180deg,#0b1220_0%,#0f1b33_50%,#0b1220_100%)]">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(520px_320px_at_12%_0%,rgba(99,102,241,0.14),transparent_60%),radial-gradient(500px_340px_at_88%_8%,rgba(168,85,247,0.12),transparent_60%),radial-gradient(700px_520px_at_50%_115%,rgba(56,189,248,0.1),transparent_70%)]" />
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_40%),radial-gradient(600px_300px_at_20%_10%,rgba(147,51,234,0.12),transparent_60%),radial-gradient(700px_360px_at_80%_0%,rgba(56,189,248,0.10),transparent_65%)]" />
-      {/* Centered white-blue-pink light */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[14%] -translate-x-1/2 h-[560px] w-[900px] rounded-full blur-2xl opacity-90 bg-[radial-gradient(800px_520px_at_center,rgba(255,255,255,0.24)_0%,rgba(59,130,246,0.22)_42%,rgba(236,72,153,0.20)_75%,rgba(255,255,255,0)_78%)]" />
+      {/* Centered nebula glow */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[560px] w-[960px] rounded-full blur-2xl"
+          style={{
+            background:
+              'radial-gradient(700px 440px at center, rgba(168,85,247,0.28) 0%, rgba(99,102,241,0.24) 40%, rgba(34,211,238,0.18) 70%, transparent 78%)',
+            opacity: 0.9,
+          }}
+        />
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
         <div className="absolute -top-20 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.18),transparent_60%)]" />
         <div className="absolute -bottom-24 left-10 h-[420px] w-[420px] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.16),transparent_60%)]" />
         <div className="absolute -bottom-16 right-10 h-[380px] w-[380px] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.16),transparent_60%)]" />
       </div>
-      <div className="text-center">
+      <div className="text-center relative z-10">
         <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">Services</h2>
         <p className="mt-2 text-slate-300 max-w-2xl mx-auto text-sm md:text-base">How I can help your team ship great products.</p>
       </div>
-      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch relative z-10">
         {services.map((s, i) => (
           <div
             key={s.title}

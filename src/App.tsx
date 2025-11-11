@@ -270,11 +270,11 @@ function Journey() {
           </motion.button>
         </div>
 
-        <div id="journey-scroller" className="relative z-10 flex flex-row-reverse gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
+        <div id="journey-scroller" className="relative z-10 flex flex-row-reverse gap-6 overflow-x-auto pb-4 snap-x snap-mandatory px-4 md:px-0 [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
           {items.map((it, idx) => (
             <motion.article
               key={idx}
-              className="snap-center shrink-0 w-[320px] md:w-[360px]"
+              className="snap-center shrink-0 w-[260px] sm:w-[300px] md:w-[360px]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
@@ -370,7 +370,7 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_50%_10%,rgba(99,102,241,0.08),transparent_60%)]" />
       <div className="mx-auto text-center">
         <p className="text-base text-indigo-300/90">Namaste 🙏, I'm <span className="font-semibold text-white">Jayanta Barman</span>. A passionate software developer</p>
-        <h1 className="mt-4 text-[4.2em] leading-[1.1] font-extrabold tracking-tight text-slate-100">
+        <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl leading-[1.1] font-extrabold tracking-tight text-slate-100">
           Building Scalable Digital
           <br className="hidden sm:block" />
           Experiences with 
@@ -562,7 +562,7 @@ function About() {
         <div className="justify-self-center">
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_30px_-20px_rgba(255,255,255,0.25)]">
             {/* Use BASE_URL so it works with non-root deployments */}
-            <img src={`${import.meta.env.BASE_URL}profile-pic.png`} alt="Profile" className="h-[360px] w-[280px] object-cover md:h-[420px] md:w-[320px]" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
+            <img src={`${import.meta.env.BASE_URL}profile-pic.png`} alt="Profile" className="w-full max-w-[280px] md:max-w-[320px] h-auto object-cover" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
             {/* <div className="h-[360px] w-[280px] md:h-[420px] md:w-[320px] flex items-center justify-center text-slate-400" aria-hidden>Upload profile-pic.png</div> */}
           </div>
         </div>
@@ -891,7 +891,7 @@ export default function App() {
     document.documentElement.style.scrollBehavior = 'smooth'
   }, [])
   return (
-    <div className="min-h-screen aurora-bg text-slate-100">
+    <div className="min-h-screen aurora-bg text-slate-100 overflow-x-hidden">
       <Nav />
       <main>
         <Hero />

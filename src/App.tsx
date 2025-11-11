@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import resumePdf from './assets/Jayant Barman (Full Stack Devloper).pdf'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Nav() {
   const [open, setOpen] = useState(false)
@@ -248,27 +250,36 @@ function Journey() {
 
         {/* carousel controls (bottom-right) */}
         <div className="absolute right-2 bottom-2 z-20 flex items-center gap-2">
-          <button
+          <motion.button
             type="button"
             aria-label="Previous"
             className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
             onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: 380, behavior: 'smooth' })}
+            whileTap={{ scale: 0.9 }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-0.5"><path d="M15 6l-6 6 6 6"/></svg>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             aria-label="Next"
             className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
             onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: -380, behavior: 'smooth' })}
+            whileTap={{ scale: 0.9 }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
+          </motion.button>
         </div>
 
         <div id="journey-scroller" className="relative z-10 flex flex-row-reverse gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
           {items.map((it, idx) => (
-            <article key={idx} className="snap-center shrink-0 w-[320px] md:w-[360px]">
+            <motion.article
+              key={idx}
+              className="snap-center shrink-0 w-[320px] md:w-[360px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.45, ease: 'easeOut', delay: idx * 0.06 }}
+            >
               <div className={`rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-5 shadow-[0_10px_40px_-20px_rgba(2,6,23,0.5)] ring-1 ring-white/10 h-full min-h-[240px] flex flex-col`}>
                 <div className="flex items-center justify-between">
                   <div className="text-sm text-slate-300">{it.org}</div>
@@ -293,7 +304,7 @@ function Journey() {
                   <span>📍 {it.location}</span>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>
@@ -305,7 +316,15 @@ function Section({ id, children, className = '' }: { id: string; children: React
   return (
     <section id={id} className={`relative overflow-hidden scroll-mt-20 py-16 md:py-24 ${className}`}>
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_0%_0%,rgba(255,255,255,0.06),transparent_60%),radial-gradient(60%_40%_at_100%_100%,rgba(255,255,255,0.05),transparent_60%)]" />
-      <div className="container mx-auto px-4">{children}</div>
+      <motion.div
+        className="container mx-auto px-4"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        {children}
+      </motion.div>
     </section>
   )
 }
@@ -494,16 +513,18 @@ function Hero() {
           A multidisciplinary engineer crafting digital experiences that resonate with culture, emotion, and efficiency.
         </p>
         <div className="mt-8 flex justify-center">
-          <a
-            href="/Jayanta_Barman_Resume.pdf"
-            download
+          <motion.a
+            href={resumePdf}
+            download="Jayanta_Barman_Resume.pdf"
             aria-label="Download Jayanta Barman resume (PDF)"
             title="Download Resume (PDF)"
             className="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-lg text-white bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-400 hover:from-violet-700 hover:via-fuchsia-600 hover:to-cyan-500 active:translate-y-[1px] ring-1 ring-violet-400/30 hover:ring-violet-400/50 transition-all shadow-lg hover:shadow-violet-500/20"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
           >
             <span className="text-white">Download Resume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-white"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 1 1 8.293 11.293L10.586 13.586V4a1 1 0 0 1 1-1ZM5 20a1 1 0 0 1 0-2h14a1 1 0 1 1 0 2H5Z"/></svg>
-          </a>
+          </motion.a>
         </div>
         <div className="mt-6 flex flex-col items-center justify-center gap-3 text-slate-400 pb-20">
           <span className="text-lg font-bold">Find me on</span>
@@ -679,10 +700,10 @@ function About() {
         </div>
         <div>
           <p className="text-slate-300 leading-relaxed">
-            Over the last <span className="font-semibold text-white">2+ years</span>, I've worked on projects that balance performance, accessibility, and intuitive design. My goal is to make products that feel effortless yet impactful for users.
+            Over the last <span className="font-semibold text-white">2+ years</span>, I’ve been working as a Full Stack Developer, building and maintaining projects that balance performance, scalability, and intuitive user experience. I focus on creating products that feel seamless yet deliver a strong impact — whether it’s a complex web application or a responsive client-facing platform.
           </p>
           <p className="mt-4 text-slate-300 leading-relaxed">
-            Beyond coding, I enjoy collaborating with teams, brainstorming product ideas, and refining details that turn a good experience into a great one. Whether it's a marketing site or a scalable app, I strive for clean, maintainable, and elegant solutions.
+            Beyond coding, I enjoy collaborating with cross-functional teams, brainstorming new product ideas, and refining small details that elevate a good experience into a great one. My approach revolves around writing clean, maintainable, and efficient code that ensures long-term stability and growth for every project I work on.          
           </p>
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-4 gap-3">
@@ -744,7 +765,7 @@ function About() {
         {[
           { k: 'Years Experience', v: '2+' },
           { k: 'Projects Delivered', v: '10+' },
-          { k: 'Happy Clients', v: '5+' },
+          { k: 'Happy Clients', v: '1+' },
         ].map(({k,v}) => (
           <div key={k} className="text-center">
             <div className="text-3xl font-extrabold text-white">{v}</div>
@@ -797,7 +818,7 @@ function Skills() {
     activeTab === 'Frontend'
       ? { badge: 'User Interface', title: 'Frontend Development', desc: 'I specialize in creating responsive, accessible, and performant user interfaces using modern frontend technologies and frameworks.', list: frontendList, image: '/frontend.jpg', placeholder: 'Upload frontend.jpg' }
       : activeTab === 'Backend'
-      ? { badge: 'APIs & Services', title: 'Backend Development', desc: 'I design and build robust, scalable backend services and APIs with strong focus on security, reliability, and observability.', list: backendList, image: '/backend.jpg', placeholder: 'Upload backend.jpg' }
+      ? { badge: 'APIs & Services', title: 'Backend Development', desc: 'I design and build robust, scalable backend services and APIs with strong focus on security, reliability, and observability.', list: backendList, image: '/backend1.jpg', placeholder: 'Upload backend.jpg' }
       : { badge: 'Collaboration', title: 'Soft Skills', desc: 'I value clear communication, teamwork, and process that help teams deliver quality software efficiently.', list: softSkillsList, image: '/soft-skill.png', placeholder: 'Upload soft-skill.png' }
 
   const colors =

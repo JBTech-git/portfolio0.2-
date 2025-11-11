@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import resumePdf from './assets/Jayant Barman (Full Stack Devloper).pdf'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 function Nav() {
   const [open, setOpen] = useState(false)
@@ -365,138 +365,6 @@ function Hero() {
       brand: `https://cdn.simpleicons.org/${slug}`,
     }
   }
-  const skillIcon = (name: string) => {
-    switch (name) {
-      case 'React':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.4">
-            <circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none" className="opacity-90" />
-            <ellipse cx="12" cy="12" rx="9" ry="4.2" />
-            <ellipse cx="12" cy="12" rx="9" ry="4.2" transform="rotate(60 12 12)" />
-            <ellipse cx="12" cy="12" rx="9" ry="4.2" transform="rotate(-60 12 12)" />
-          </svg>
-        )
-      case 'Next.js':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-slate-200 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <path d="M4.5 6.5h15v11h-15z" className="opacity-30" />
-            <path d="M7 16l10-8" />
-            <path d="M11 8v8" className="opacity-70" />
-          </svg>
-        )
-      case 'TypeScript':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-blue-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <rect x="4" y="5" width="16" height="14" rx="2" className="opacity-40" />
-            <path d="M8 10h4M10 10v6" />
-          </svg>
-        )
-      case 'JavaScript':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-yellow-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <rect x="4" y="5" width="16" height="14" rx="2" className="opacity-40" />
-            <path d="M9 10v6M15 10c1.8 0 3 1 3 2.6 0 1.4-1.2 2.4-3 2.4" />
-          </svg>
-        )
-      case 'Node.js':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-emerald-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <polygon points="12,3 21,8 21,16 12,21 3,16 3,8" className="opacity-70" />
-          </svg>
-        )
-      case 'Express':
-        return (
-          <svg viewBox="0 0 24 24" className="h-5 w-5 text-white group-hover:text-slate-200" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <rect x="4" y="6" width="16" height="12" rx="2" className="opacity-50" />
-            <path d="M8 12h8" />
-          </svg>
-        )
-      case 'REST APIs':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <circle cx="7" cy="12" r="2.5" />
-            <circle cx="17" cy="12" r="2.5" />
-            <path d="M9.5 12H14.5" />
-          </svg>
-        )
-      case 'GraphQL':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-fuchsia-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <polygon points="12,4 20,8 20,16 12,20 4,16 4,8" className="opacity-60" />
-            <line x1="12" y1="4" x2="12" y2="20" />
-            <line x1="4" y1="8" x2="20" y2="16" />
-            <line x1="20" y1="8" x2="4" y2="16" />
-          </svg>
-        )
-      case 'PostgreSQL':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-sky-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <ellipse cx="12" cy="7" rx="7" ry="3" />
-            <path d="M5 7v6c0 1.7 3.1 3 7 3s7-1.3 7-3V7" />
-          </svg>
-        )
-      case 'MongoDB':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-emerald-300 transition-transform duration-200 group-hover:scale-110" fill="currentColor">
-            <path d="M12 3c2 3 3 6 3 9s-1 6-3 9c-2-3-3-6-3-9s1-6 3-9z" />
-          </svg>
-        )
-      case 'Prisma':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-200 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <polygon points="6,18 14,3 18,21" />
-          </svg>
-        )
-      case 'Tailwind CSS':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-cyan-300 transition-transform duration-200 group-hover:scale-110" fill="currentColor">
-            <path d="M12 7c-2 0-3 .9-4 2 1-1 2-1 3-.5C12 9 13 11 15 11c2 0 3-.9 4-2-1 1-2 1-3 .5C14 8 13 7 12 7zM7 13c-2 0-3 .9-4 2 1-1 2-1 3-.5C7 15 8 17 10 17c2 0 3-.9 4-2-1 1-2 1-3 .5C9 14 8 13 7 13z" />
-          </svg>
-        )
-      case 'Redux':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-violet-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <circle cx="8" cy="12" r="2" />
-            <circle cx="16" cy="9" r="2" />
-            <circle cx="14" cy="16" r="2" />
-            <path d="M9.5 13.5c1.5 2 3.5 3 6 2.5M14.5 7.5c-2-1-4.5-.5-6 1.5M6.5 11.5c-.5 2.2 1 4.3 3.2 5.3" />
-          </svg>
-        )
-      case 'Jest':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-rose-300 transition-transform duration-200 group-hover:scale-110" fill="currentColor">
-            <path d="M7 5l2 5 3-3 3 3 2-5-5 2-5-2z" />
-          </svg>
-        )
-      case 'CI/CD':
-        return (
-          <svg viewBox="0 0 24 24" className="h-5 w-5 text-white group-hover:text-slate-200" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <path d="M8 7h6l3 3-3 3H8l-3-3 3-3z" className="opacity-60" />
-            <path d="M10 4v3M14 17v3" />
-          </svg>
-        )
-      case 'Docker':
-        return (
-          <svg viewBox="0 0 24 24" className="h-5 w-5 text-white group-hover:text-sky-300" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <rect x="6" y="11" width="3" height="3" />
-            <rect x="10" y="11" width="3" height="3" />
-            <rect x="14" y="11" width="3" height="3" />
-            <rect x="10" y="7" width="3" height="3" />
-            <path d="M4 15c0 2.2 2 4 6 4h5c3 0 5-2 5-4" />
-          </svg>
-        )
-      case 'AWS':
-        return (
-          <svg viewBox="0 0 24 24" className="h-6 w-6 text-white group-hover:text-orange-300 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <path d="M6 14a5 5 0 0 1 4-7 6 6 0 0 1 11 3c0 .3 0 .6-.1.9A4 4 0 0 1 19 18H8a4 4 0 0 1-2-4z" />
-          </svg>
-        )
-      default:
-        return (
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-400 to-cyan-400" />
-        )
-    }
-  }
   return (
     <Section id="home" className="relative overflow-hidden min-h-[90vh] md:min-h-screen flex items-center">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_50%_10%,rgba(99,102,241,0.08),transparent_60%)]" />
@@ -693,8 +561,8 @@ function About() {
       <div className="mt-10 grid gap-8 md:grid-cols-2 md:items-center">
         <div className="justify-self-center">
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_30px_-20px_rgba(255,255,255,0.25)]">
-            {/* Replace /profile-pic.png with your photo in public/ if needed */}
-            <img src="/profile-pic.png" alt="Profile" className="h-[360px] w-[280px] object-cover md:h-[420px] md:w-[320px]" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
+            {/* Use BASE_URL so it works with non-root deployments */}
+            <img src={`${import.meta.env.BASE_URL}profile-pic.png`} alt="Profile" className="h-[360px] w-[280px] object-cover md:h-[420px] md:w-[320px]" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
             {/* <div className="h-[360px] w-[280px] md:h-[420px] md:w-[320px] flex items-center justify-center text-slate-400" aria-hidden>Upload profile-pic.png</div> */}
           </div>
         </div>
@@ -884,7 +752,7 @@ function Skills() {
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-rose-50 via-indigo-50 to-blue-50 shadow-sm">
               <img
                 key={selected.image}
-                src={selected.image}
+                src={`${import.meta.env.BASE_URL}${selected.image.replace(/^\//,'')}`}
                 alt={`${selected.title} preview`}
                 className={`aspect-[4/3] w-full object-cover transition-transform duration-300 hover:scale-[1.02] ${imageError ? 'hidden' : ''}`}
                 onLoad={() => setImageError(false)}

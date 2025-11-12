@@ -167,7 +167,7 @@ function Connect() {
                     <circle cx="7" cy="7" r="1" fill="currentColor" stroke="none" />
                     <circle cx="11" cy="7" r="1" fill="currentColor" stroke="none" />
                   </svg>
-                  Schedule a call
+                  Schedule a call 
                 </a>
                 <a href="mailto:bjayanta584@gmail.com?subject=Hello%20Jayanta%20-%20Hiring%20inquiry&body=Hello%20Jayanta,%0D%0A%0D%0AWe%20would%20like%20to%20explore%20hiring%20you%20for%20our%20team%2Fcompany.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%20I%20can%20share%20scope,%20timeline,%20and%20budget%20details.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]%0D%0A[Company]%0D%0A[Phone]" className="inline-flex h-10 min-w-[170px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white px-5 text-base font-semibold shadow-[inset_0_-3px_0_rgba(0,0,0,0.15)] hover:from-indigo-600 hover:via-fuchsia-600 hover:to-cyan-500">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">

@@ -562,7 +562,7 @@ function About() {
         <div className="justify-self-center">
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_30px_-20px_rgba(255,255,255,0.25)]">
             {/* Use BASE_URL so it works with non-root deployments */}
-            <img src={`${import.meta.env.BASE_URL}profile-pic.png`} alt="Profile" className="w-full max-w-[280px] md:max-w-[320px] h-auto object-cover" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
+            <img src={`${import.meta.env.BASE_URL}profile-pic.png`} alt="Jayanta Barman — Software Engineer" className="w-full max-w-[280px] md:max-w-[320px] h-auto object-cover" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
             {/* <div className="h-[360px] w-[280px] md:h-[420px] md:w-[320px] flex items-center justify-center text-slate-400" aria-hidden>Upload profile-pic.png</div> */}
           </div>
         </div>

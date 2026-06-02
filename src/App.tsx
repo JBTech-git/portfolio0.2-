@@ -1,43 +1,143 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import resumePdf from './assets/Jayant Barman (Full Stack Devloper).pdf'
 import { motion } from 'framer-motion'
 
+const CAREER_START_DATE = new Date(2023, 9, 1) // 01-10-2023
+
+function getExperienceDuration(from = CAREER_START_DATE, to = new Date()) {
+  if (to < from) return { years: 0, months: 0 }
+
+  let years = to.getFullYear() - from.getFullYear()
+  let months = to.getMonth() - from.getMonth()
+  const dayDiff = to.getDate() - from.getDate()
+
+  if (dayDiff < 0) months -= 1
+  if (months < 0) {
+    years -= 1
+    months += 12
+  }
+
+  return { years: Math.max(0, years), months: Math.max(0, months) }
+}
+
+function formatExperienceDuration({ years, months }: { years: number; months: number }) {
+  if (years === 0 && months === 0) return 'less than a month'
+
+  const parts: string[] = []
+  if (years > 0) parts.push(`${years} year${years === 1 ? '' : 's'}`)
+  if (months > 0) parts.push(`${months} month${months === 1 ? '' : 's'}`)
+
+  return parts.length === 1 ? parts[0] : `${parts[0]} and ${parts[1]}`
+}
+
+function formatExperienceYearsStat({ years, months }: { years: number; months: number }) {
+  if (years === 0) return months > 0 ? '< 1' : '0'
+  return months > 0 ? `${years}+` : `${years}`
+}
+
+const SCHEDULE_CALL_URL =
+  import.meta.env.VITE_SCHEDULE_CALL_URL ||
+  [
+    'https://calendar.google.com/calendar/render?action=TEMPLATE',
+    `text=${encodeURIComponent('Call with Jayanta Barman')}`,
+    `details=${encodeURIComponent("Hi Jayanta,\n\nI'd like to schedule a call to discuss a potential opportunity.\n\nLooking forward to connecting!")}`,
+    `add=${encodeURIComponent('bjayanta584@gmail.com')}`,
+  ].join('&')
+
+const NAV_LINKS = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#services', label: 'Services' },
+  { href: '#journey', label: 'Experience' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#connect', label: 'Contact' },
+] as const
+
+function scrollToSection(hash: string) {
+  const id = hash.replace(/^#/, '')
+  const el = document.getElementById(id)
+  if (!el) return
+
+  const headerHeight = window.matchMedia('(min-width: 640px)').matches ? 80 : 64
+  const top = el.getBoundingClientRect().top + window.scrollY - headerHeight
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+  window.history.pushState(null, '', `#${id}`)
+}
+
 function Nav() {
   const [open, setOpen] = useState(false)
+
   useEffect(() => {
     const onResize = () => setOpen(false)
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
+
+  useEffect(() => {
+    if (!open) return
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
+  const handleNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    setOpen(false)
+    scrollToSection(href)
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-900/40 backdrop-blur supports-[backdrop-filter]:bg-slate-900/30">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-3 items-center h-14">
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-300">
-            <a href="#home" className="hover:text-white">Home</a>
-            <a href="#about" className="hover:text-white">About</a>
-            <a href="#services" className="hover:text-white">Services</a>
-            <a href="#projects" className="hover:text-white">Projects</a>
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14 md:grid md:grid-cols-3">
+          <nav className="hidden md:flex items-center gap-2 lg:gap-4 xl:gap-5 text-xs lg:text-sm text-slate-300 min-w-0 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {NAV_LINKS.map(({ href, label }) => (
+              <a key={href} href={href} onClick={handleNavClick(href)} className="hover:text-white whitespace-nowrap shrink-0">
+                {label}
+              </a>
+            ))}
           </nav>
-          <a href="#home" className="justify-self-center font-semibold text-slate-100 flex items-center gap-2">
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-sm text-white">JB</span>
-            <span>Jayanta Barman</span>
+          <a href="#home" onClick={handleNavClick('#home')} className="font-semibold text-slate-100 flex items-center gap-2 min-w-0 md:justify-self-center">
+            <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-sm text-white text-xs">JB</span>
+            <span className="truncate text-sm sm:text-base">Jayanta Barman</span>
           </a>
-          <div className="justify-self-end flex items-center gap-2">
-            <button onClick={() => setOpen(!open)} aria-label="Toggle Menu" className="md:hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200 shadow-sm hover:bg-white/10">Menu</button>
-            <a href="#contact" className="hidden md:inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-slate-100 shadow-sm hover:bg-white/10 ring-1 ring-white/10">Contact</a>
+          <div className="flex items-center gap-2 md:justify-self-end shrink-0">
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              className="md:hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200 shadow-sm hover:bg-white/10"
+            >
+              {open ? 'Close' : 'Menu'}
+            </button>
+            <a
+              href="#connect"
+              onClick={handleNavClick('#connect')}
+              className="hidden md:inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-slate-100 shadow-sm hover:bg-white/10 ring-1 ring-white/10"
+            >
+              Contact
+            </a>
           </div>
         </div>
         {open && (
-          <div className="md:hidden pb-3">
-            <div className="flex flex-col gap-2 text-sm rounded-xl border border-white/10 bg-white/5 p-3 text-slate-200">
-              <a onClick={() => setOpen(false)} href="#home" className="hover:text-white">Home</a>
-              <a onClick={() => setOpen(false)} href="#about" className="hover:text-white">About</a>
-              <a onClick={() => setOpen(false)} href="#services" className="hover:text-white">Services</a>
-              <a onClick={() => setOpen(false)} href="#projects" className="hover:text-white">Projects</a>
-              <a onClick={() => setOpen(false)} href="#contact" className="hover:text-white">Contact</a>
+          <nav id="mobile-nav" aria-label="Mobile navigation" className="md:hidden pb-3">
+            <div className="flex flex-col gap-1 text-sm rounded-xl border border-white/10 bg-white/5 p-2 text-slate-200">
+              {NAV_LINKS.map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={handleNavClick(href)}
+                  className="rounded-lg px-3 py-2.5 hover:bg-white/10 hover:text-white active:bg-white/15"
+                >
+                  {label}
+                </a>
+              ))}
             </div>
-          </div>
+          </nav>
         )}
       </div>
     </header>
@@ -47,8 +147,8 @@ function Nav() {
 function Footer() {
   return (
     <footer className="mt-12 border-t border-transparent bg-gradient-to-b from-slate-900 to-black text-slate-200">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-10 md:grid-cols-4">
+      <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div>
             <div className="text-sm text-slate-400">Best regards</div>
             <div className="mt-1 text-2xl font-extrabold">Jayanta Barman</div>
@@ -57,18 +157,24 @@ function Footer() {
           <div>
             <div className="font-semibold text-slate-100">Quick Links</div>
             <ul className="mt-3 space-y-2 text-sm text-slate-300">
-              <li><a className="hover:text-white" href="#home">Home</a></li>
-              <li><a className="hover:text-white" href="#about">About</a></li>
-              <li><a className="hover:text-white" href="#services">Services</a></li>
-              <li><a className="hover:text-white" href="#journey">Experience</a></li>
-              <li><a className="hover:text-white" href="#projects">Projects</a></li>
+              {NAV_LINKS.map(({ href, label }) => (
+                <li key={href}>
+                  <a
+                    className="hover:text-white"
+                    href={href}
+                    onClick={(e) => { e.preventDefault(); scrollToSection(href) }}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
             <div className="font-semibold text-slate-100">Contact Me</div>
             <ul className="mt-3 space-y-2 text-sm text-slate-300">
               <li>Kolkata, West Bengal, India</li>
-              <li>Email: <a href="mailto:bjayanta584@gmail.com" className="hover:text-white underline decoration-slate-600">bjayanta584@gmail.com</a></li>
+              <li>Email: <a href="mailto:bjayanta584@gmail.com" className="hover:text-white underline decoration-slate-600 break-all">bjayanta584@gmail.com</a></li>
               <li>Phone: <a href="tel:+918388988586" className="hover:text-white">+91 8388988586</a></li>
             </ul>
           </div>
@@ -88,13 +194,9 @@ function Footer() {
           </div>
         </div>
         <hr className="my-8 border-white/10" />
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-xs text-slate-400">
+        <div className="text-xs text-slate-400">
           <div>© {new Date().getFullYear()} Jayanta. All rights reserved.</div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-slate-200">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-200">Terms of Service</a>
-          </div>
-          </div>
+        </div>
         </div>
     </footer>
   )
@@ -104,7 +206,7 @@ function Connect() {
   return (
     <Section id="connect" className="pt-12 relative">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(700px_380px_at_12%_-10%,rgba(168,85,247,0.16),transparent_60%),radial-gradient(700px_380px_at_88%_-10%,rgba(34,211,238,0.14),transparent_60%)]" />
-      <div className="relative max-w-4xl mx-auto">
+      <div className="relative max-w-4xl mx-auto px-1 sm:px-0">
         {/* top-centered violet/indigo glow with subtle stars */}
         <div
           className="pointer-events-none absolute inset-0 -z-0"
@@ -120,7 +222,7 @@ function Connect() {
         />
         {/* outside-border halo */}
         <div
-          className="pointer-events-none absolute -inset-10 z-10 rounded-[40px] blur-3xl opacity-95"
+          className="pointer-events-none absolute -inset-4 sm:-inset-6 md:-inset-10 z-10 rounded-[40px] blur-3xl opacity-95"
           style={{
             background: [
               'radial-gradient(680px 340px at 50% -12%, rgba(255,255,255,0.28), transparent 72%)',
@@ -135,41 +237,47 @@ function Connect() {
         {/* gradient border wrapper */}
         <div className="relative z-20 overflow-hidden rounded-[24px] p-[1.5px] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(255,255,255,0.65),rgba(34,211,238,0.55),rgba(236,72,153,0.5),rgba(255,255,255,0.65))] shadow-[0_20px_80px_-28px_rgba(2,6,23,0.75)]">
           {/* glass inner card */}
-          <div className="rounded-[22px] border border-white/10 bg-slate-950/60 ring-1 ring-white/10 backdrop-blur-md p-8 md:p-12 relative overflow-hidden">
+          <div className="rounded-[22px] border border-white/10 bg-slate-950/60 ring-1 ring-white/10 backdrop-blur-md p-5 sm:p-8 md:p-12 relative overflow-hidden">
             <div className="text-center max-w-3xl mx-auto">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] text-slate-200">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-300" />
                 Get in Touch
               </span>
-              <h2 className="mt-4 text-3xl md:text-4xl font-extrabold text-slate-100">Let’s Connect</h2>
-              <p className="mt-3 text-slate-300">Interested in working together? I’m available for freelance projects and full‑time roles. Let’s chat about how I can help your product ship faster with great UX.</p>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-slate-300 text-sm md:text-base">
-                <div className="inline-flex items-center gap-2">
-                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100">Let’s Connect</h2>
+              <p className="mt-3 text-sm sm:text-base text-slate-300">Interested in working together? I’m available for freelance projects and full‑time roles. Let’s chat about how I can help your product ship faster with great UX.</p>
+              <div className="mt-6 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-5 text-slate-300 text-sm md:text-base">
+                <div className="inline-flex items-center gap-2 max-w-full">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
                     <rect x="3" y="5" width="18" height="14" rx="2" />
                     <path d="m3 7 9 7 9-7" />
                   </svg>
-                  <span>bjayanta584@gmail.com</span>
+                  <span className="break-all">bjayanta584@gmail.com</span>
                 </div>
                 <div className="inline-flex items-center gap-2">
-                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
                     <path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z" />
                     <circle cx="12" cy="11" r="2.5" />
                   </svg>
                   <span>Kolkata, West Bengal, IN</span>
                 </div>
               </div>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <a href="#contact" className="inline-flex h-10 min-w-[170px] items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 text-base font-semibold text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white ring-1 ring-white/10 hover:bg-white/15">
+              <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+                <a
+                  href={SCHEDULE_CALL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Schedule a call with Jayanta Barman"
+                  className="inline-flex h-10 w-full sm:w-auto sm:min-w-[170px] items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 text-sm sm:text-base font-semibold text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white ring-1 ring-white/10 hover:bg-white/15"
+                >
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
                     <rect x="3" y="5" width="18" height="16" rx="2" />
                     <path d="M3 9h18" />
                     <circle cx="7" cy="7" r="1" fill="currentColor" stroke="none" />
                     <circle cx="11" cy="7" r="1" fill="currentColor" stroke="none" />
                   </svg>
-                  Schedule a call 
+                  Schedule a call
                 </a>
-                <a href="mailto:bjayanta584@gmail.com?subject=Hello%20Jayanta%20-%20Hiring%20inquiry&body=Hello%20Jayanta,%0D%0A%0D%0AWe%20would%20like%20to%20explore%20hiring%20you%20for%20our%20team%2Fcompany.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%20I%20can%20share%20scope,%20timeline,%20and%20budget%20details.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]%0D%0A[Company]%0D%0A[Phone]" className="inline-flex h-10 min-w-[170px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white px-5 text-base font-semibold shadow-[inset_0_-3px_0_rgba(0,0,0,0.15)] hover:from-indigo-600 hover:via-fuchsia-600 hover:to-cyan-500">
+                <a href="mailto:bjayanta584@gmail.com?subject=Hello%20Jayanta%20-%20Hiring%20inquiry&body=Hello%20Jayanta,%0D%0A%0D%0AWe%20would%20like%20to%20explore%20hiring%20you%20for%20our%20team%2Fcompany.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%20I%20can%20share%20scope,%20timeline,%20and%20budget%20details.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]%0D%0A[Company]%0D%0A[Phone]" className="inline-flex h-10 w-full sm:w-auto sm:min-w-[170px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 text-white !text-white hover:!text-white focus:!text-white active:!text-white visited:!text-white px-5 text-sm sm:text-base font-semibold shadow-[inset_0_-3px_0_rgba(0,0,0,0.15)] hover:from-indigo-600 hover:via-fuchsia-600 hover:to-cyan-500">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
                     <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.2-.5 7.06 5.292a1 1 0 0 0 1.24 0L19.56 6H4.2Z"/>
                   </svg>
@@ -198,7 +306,41 @@ function Connect() {
   )
 }
 
+const JOURNEY_NAV_BTN =
+  'group shrink-0 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all'
+
+function JourneyNavButton({
+  direction,
+  onClick,
+  className = '',
+}: {
+  direction: 'newer' | 'older'
+  onClick: () => void
+  className?: string
+}) {
+  return (
+    <motion.button
+      type="button"
+      aria-label={direction === 'newer' ? 'Show newer experience' : 'Show older experience'}
+      className={`inline-flex ${JOURNEY_NAV_BTN} ${className}`}
+      onClick={onClick}
+      whileTap={{ scale: 0.9 }}
+    >
+      {direction === 'newer' ? (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 md:h-[1.35rem] md:w-[1.35rem] transition-transform duration-200 group-hover:-translate-x-0.5">
+          <path d="M15 6l-6 6 6 6" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 md:h-[1.35rem] md:w-[1.35rem] transition-transform duration-200 group-hover:translate-x-0.5">
+          <path d="M9 6l6 6-6 6" />
+        </svg>
+      )}
+    </motion.button>
+  )
+}
+
 function Journey() {
+  const scrollerRef = useRef<HTMLDivElement>(null)
   const items = [
     {
       org: 'Raiganj University',
@@ -233,79 +375,128 @@ function Journey() {
       location: 'Kolkata, India'
     }
   ]
+  const displayItems = [...items].reverse()
+
+  useEffect(() => {
+    const scroller = scrollerRef.current
+    if (!scroller) return
+
+    const alignJourneyScroll = () => {
+      scroller.scrollLeft = 0
+    }
+
+    alignJourneyScroll()
+    window.addEventListener('resize', alignJourneyScroll)
+    return () => window.removeEventListener('resize', alignJourneyScroll)
+  }, [])
+
+  const scrollJourney = (direction: 'newer' | 'older') => {
+    const scroller = scrollerRef.current
+    if (!scroller) return
+    const card = scroller.querySelector('article')
+    const cardWidth = card?.getBoundingClientRect().width ?? 280
+    const gap = parseFloat(getComputedStyle(scroller).columnGap || getComputedStyle(scroller).gap || '16')
+    const amount = cardWidth + gap
+    scroller.scrollBy({ left: direction === 'older' ? amount : -amount, behavior: 'smooth' })
+  }
+
   return (
     <Section id="journey" className="pt-12">
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">The Journey</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100">The Journey</h2>
         <p className="mt-2 text-slate-300">A brief overview of my career path and experiences.</p>
       </div>
 
-      <div className="relative mt-8">
-        {/* edge fade masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#0b1220] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#0b1220] to-transparent" />
-        {/* timeline center line */}
-        <div className="pointer-events-none absolute left-0 right-0 top-1/2 -z-10 h-px bg-white/10" />
+      <div className="relative mt-6 sm:mt-8">
+        <div className="flex flex-col md:flex-row md:items-center md:gap-3 lg:gap-5">
+          {/* Desktop/tablet — left arrow (wrapper hides on mobile) */}
+          <div className="hidden md:flex shrink-0 items-center">
+            <JourneyNavButton
+              direction="newer"
+              onClick={() => scrollJourney('newer')}
+              className="h-10 w-10 lg:h-11 lg:w-11"
+            />
+          </div>
 
+          <div className="relative min-w-0 flex-1 w-full">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden md:block w-8 bg-gradient-to-r from-[#0b1220] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden md:block w-8 bg-gradient-to-l from-[#0b1220] to-transparent" />
+            <div className="pointer-events-none absolute left-0 right-0 top-1/2 -z-10 h-px bg-white/10" />
 
-        {/* carousel controls (bottom-right) */}
-        <div className="absolute right-2 bottom-2 z-20 flex items-center gap-2">
-          <motion.button
-            type="button"
-            aria-label="Previous"
-            className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
-            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: 380, behavior: 'smooth' })}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-0.5"><path d="M15 6l-6 6 6 6"/></svg>
-          </motion.button>
-          <motion.button
-            type="button"
-            aria-label="Next"
-            className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 text-white backdrop-blur-md ring-1 ring-white/10 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30 hover:shadow-[0_0_18px_rgba(56,189,248,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 transition-all"
-            onClick={() => document.getElementById('journey-scroller')?.scrollBy({ left: -380, behavior: 'smooth' })}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5"><path d="M9 6l6 6-6 6"/></svg>
-          </motion.button>
-        </div>
-
-        <div id="journey-scroller" className="relative z-10 flex flex-row-reverse gap-6 overflow-x-auto pb-4 snap-x snap-mandatory px-4 md:px-0 [scrollbar-width:none] [-ms-overflow-style:none]" style={{scrollBehavior:'smooth'}}>
-          {items.map((it, idx) => (
-            <motion.article
-              key={idx}
-              className="snap-center shrink-0 w-[260px] sm:w-[300px] md:w-[360px]"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.45, ease: 'easeOut', delay: idx * 0.06 }}
+            <div
+              ref={scrollerRef}
+              id="journey-scroller"
+              className="relative z-10 flex flex-row gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory -mx-4 px-[max(1rem,calc(50%-min(42.5vw,150px)))] sm:px-[max(1rem,calc(50%-140px))] md:mx-0 md:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              style={{ scrollBehavior: 'smooth' }}
             >
-              <div className={`rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-5 shadow-[0_10px_40px_-20px_rgba(2,6,23,0.5)] ring-1 ring-white/10 h-full min-h-[240px] flex flex-col`}>
-                <div className="flex items-center justify-between">
-                  <div className="text-sm text-slate-300">{it.org}</div>
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full text-xs px-2.5 py-0.5 ${String(it.badge).toLowerCase().includes('current')
-                      ? 'bg-gradient-to-r from-emerald-500/20 to-cyan-400/20 text-emerald-200 ring-1 ring-emerald-400/40 shadow-[0_0_18px_rgba(16,185,129,0.35)]'
-                      : 'bg-white/10 text-slate-200'}`}
-                    tabIndex={String(it.badge).toLowerCase().includes('current') ? 0 : -1}
-                    aria-label={String(it.badge).toLowerCase().includes('current') ? 'Current role' : undefined}
-                    role={String(it.badge).toLowerCase().includes('current') ? 'status' : undefined}
-                  >
-                    {String(it.badge).toLowerCase().includes('current') && (
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" aria-hidden />
-                    )}
-                    {it.badge}
-                  </span>
-                </div>
-                <h3 className="mt-2 text-lg font-semibold text-slate-100">{it.role}</h3>
-                <p className="mt-2 text-sm text-slate-300">{it.desc}</p>
-                <div className="mt-auto pt-3 flex items-center justify-between text-xs text-slate-400">
-                  <span>📅 {it.dates}</span>
-                  <span>📍 {it.location}</span>
-                </div>
-              </div>
-            </motion.article>
-          ))}
+              {displayItems.map((it, idx) => {
+                const isCurrent = String(it.badge).toLowerCase().includes('current')
+                return (
+                <motion.article
+                  key={`${it.org}-${it.role}`}
+                  data-current={isCurrent ? 'true' : undefined}
+                  className="snap-center md:snap-start shrink-0 w-[min(85vw,300px)] sm:w-[280px] md:w-[300px] lg:w-[340px]"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.45, ease: 'easeOut', delay: idx * 0.06 }}
+                >
+                  <div className={`rounded-2xl border bg-white/10 backdrop-blur-md p-4 sm:p-5 shadow-[0_10px_40px_-20px_rgba(2,6,23,0.5)] h-full min-h-[220px] sm:min-h-[240px] flex flex-col ${
+                    isCurrent
+                      ? 'border-emerald-400/40 ring-2 ring-emerald-400/30 shadow-[0_0_28px_rgba(16,185,129,0.2)]'
+                      : 'border-white/10 ring-1 ring-white/10'
+                  }`}>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="text-sm text-slate-300 truncate">{it.org}</div>
+                      <span
+                        className={`inline-flex shrink-0 items-center gap-1.5 rounded-full text-xs px-2.5 py-0.5 ${String(it.badge).toLowerCase().includes('current')
+                          ? 'bg-gradient-to-r from-emerald-500/20 to-cyan-400/20 text-emerald-200 ring-1 ring-emerald-400/40 shadow-[0_0_18px_rgba(16,185,129,0.35)]'
+                          : 'bg-white/10 text-slate-200'}`}
+                        tabIndex={String(it.badge).toLowerCase().includes('current') ? 0 : -1}
+                        aria-label={String(it.badge).toLowerCase().includes('current') ? 'Current role' : undefined}
+                        role={String(it.badge).toLowerCase().includes('current') ? 'status' : undefined}
+                      >
+                        {String(it.badge).toLowerCase().includes('current') && (
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" aria-hidden />
+                        )}
+                        {it.badge}
+                      </span>
+                    </div>
+                    <h3 className="mt-2 text-base sm:text-lg font-semibold text-slate-100">{it.role}</h3>
+                    <p className="mt-2 text-sm text-slate-300">{it.desc}</p>
+                    <div className="mt-auto pt-3 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between text-xs text-slate-400">
+                      <span className="truncate">📅 {it.dates}</span>
+                      <span className="truncate">📍 {it.location}</span>
+                    </div>
+                  </div>
+                </motion.article>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Desktop/tablet — right arrow (wrapper hides on mobile) */}
+          <div className="hidden md:flex shrink-0 items-center">
+            <JourneyNavButton
+              direction="older"
+              onClick={() => scrollJourney('older')}
+              className="h-10 w-10 lg:h-11 lg:w-11"
+            />
+          </div>
+
+          {/* Mobile only — centered below carousel (wrapper hides on md+) */}
+          <div className="flex md:hidden items-center justify-center gap-8 mt-4">
+            <JourneyNavButton
+              direction="newer"
+              onClick={() => scrollJourney('newer')}
+              className="h-11 w-11"
+            />
+            <JourneyNavButton
+              direction="older"
+              onClick={() => scrollJourney('older')}
+              className="h-11 w-11"
+            />
+          </div>
         </div>
       </div>
     </Section>
@@ -314,10 +505,10 @@ function Journey() {
 
 function Section({ id, children, className = '' }: { id: string; children: React.ReactNode; className?: string }) {
   return (
-    <section id={id} className={`relative overflow-hidden scroll-mt-20 py-16 md:py-24 ${className}`}>
+    <section id={id} className={`relative overflow-hidden scroll-mt-16 sm:scroll-mt-20 py-12 sm:py-16 md:py-24 ${className}`}>
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_0%_0%,rgba(255,255,255,0.06),transparent_60%),radial-gradient(60%_40%_at_100%_100%,rgba(255,255,255,0.05),transparent_60%)]" />
       <motion.div
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 sm:px-6"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
@@ -366,18 +557,20 @@ function Hero() {
     }
   }
   return (
-    <Section id="home" className="relative overflow-hidden min-h-[90vh] md:min-h-screen flex items-center">
+    <Section id="home" className="relative overflow-hidden min-h-[80vh] sm:min-h-[90vh] md:min-h-screen flex items-center">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_50%_10%,rgba(99,102,241,0.08),transparent_60%)]" />
-      <div className="mx-auto text-center">
-        <p className="text-base text-indigo-300/90">Namaste 🙏, I'm <span className="font-semibold text-white">Jayanta Barman</span>. A passionate software developer</p>
-        <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl leading-[1.1] font-extrabold tracking-tight text-slate-100">
+      <div className="mx-auto w-full max-w-4xl text-center px-1 sm:px-0">
+        <p className="text-sm sm:text-base text-indigo-300/90 px-2">Namaste 🙏, I'm <span className="font-semibold text-white">Jayanta Barman</span>. A passionate software developer</p>
+        <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl leading-tight sm:leading-[1.1] font-extrabold tracking-tight text-slate-100 px-1">
           Building Scalable Digital
           <br className="hidden sm:block" />
+          <span className="sm:hidden"> </span>
           Experiences with 
           <br className="hidden sm:block" />
+          <span className="sm:hidden"> </span>
           <span className="font-['Playfair_Display'] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 drop-shadow-[0_2px_14px_rgba(99,102,241,0.45)]">Clean Code &amp; Seamless UX</span>
         </h1>
-        <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+        <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto px-2">
           A multidisciplinary engineer crafting digital experiences that resonate with culture, emotion, and efficiency.
         </p>
         <div className="mt-8 flex justify-center">
@@ -386,7 +579,7 @@ function Hero() {
             download="Jayanta_Barman_Resume.pdf"
             aria-label="Download Jayanta Barman resume (PDF)"
             title="Download Resume (PDF)"
-            className="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-lg text-white bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-400 hover:from-violet-700 hover:via-fuchsia-600 hover:to-cyan-500 active:translate-y-[1px] ring-1 ring-violet-400/30 hover:ring-violet-400/50 transition-all shadow-lg hover:shadow-violet-500/20"
+            className="inline-flex items-center gap-2 rounded-xl px-5 py-3 sm:px-7 sm:py-3.5 text-base sm:text-lg text-white bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-400 hover:from-violet-700 hover:via-fuchsia-600 hover:to-cyan-500 active:translate-y-[1px] ring-1 ring-violet-400/30 hover:ring-violet-400/50 transition-all shadow-lg hover:shadow-violet-500/20"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -394,8 +587,8 @@ function Hero() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-white"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 1 1 8.293 11.293L10.586 13.586V4a1 1 0 0 1 1-1ZM5 20a1 1 0 0 1 0-2h14a1 1 0 1 1 0 2H5Z"/></svg>
           </motion.a>
         </div>
-        <div className="mt-6 flex flex-col items-center justify-center gap-3 text-slate-400 pb-20">
-          <span className="text-lg font-bold">Find me on</span>
+        <div className="mt-6 flex flex-col items-center justify-center gap-3 text-slate-400 pb-12 sm:pb-20">
+          <span className="text-base sm:text-lg font-bold">Find me on</span>
           <div className="flex items-center gap-2">
             <a aria-label="GitHub" href="https://github.com/JBTech-git" target="_blank" rel="noreferrer noopener" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.486 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.158-1.11-1.468-1.11-1.468-.908-.62.069-.607.069-.607 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.27.098-2.646 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.296 2.748-1.026 2.748-1.026.546 1.376.203 2.393.1 2.646.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.92.678 1.855 0 1.339-.012 2.419-.012 2.747 0 .268.18.579.688.48C19.138 20.194 22 16.44 22 12.017 22 6.486 17.523 2 12 2Z" clipRule="evenodd"/></svg>
@@ -416,7 +609,7 @@ function Hero() {
             {[...skills, ...skills].map((s, i) => (
               <span
                 key={`${s}-${i}`}
-                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-lg text-slate-100 whitespace-nowrap"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-lg text-slate-100 whitespace-nowrap"
               >
                 {(() => {
                   const urls = skillIconUrls(s)
@@ -464,7 +657,7 @@ function Projects() {
     <Section id="projects" className="relative">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(520px_320px_at_15%_0%,rgba(168,85,247,0.14),transparent_60%),radial-gradient(520px_320px_at_85%_-5%,rgba(34,211,238,0.12),transparent_60%)]" />
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">Projects</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100">Projects</h2>
         <p className="mt-2 text-slate-300">Selected work demonstrating product thinking and craft.</p>
       </div>
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -509,7 +702,7 @@ function Projects() {
           onClick={(e) => { if (e.target === e.currentTarget) setOpen(null) }}
         >
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-          <div className="relative z-[61] w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/10 ring-1 ring-white/10 shadow-[0_30px_120px_-20px_rgba(2,6,23,0.8)]">
+          <div className="relative z-[61] w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 bg-white/10 ring-1 ring-white/10 shadow-[0_30px_120px_-20px_rgba(2,6,23,0.8)]">
             <div className="relative h-48 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/25 via-fuchsia-500/20 to-cyan-400/25" />
               <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
@@ -551,30 +744,34 @@ function Projects() {
 }
 
 function About() {
+  const experience = getExperienceDuration()
+  const experienceLabel = formatExperienceDuration(experience)
+  const experienceYearsStat = formatExperienceYearsStat(experience)
+
   return (
     <Section id="about" className="relative overflow-hidden bg-gradient-to-b from-indigo-950 via-slate-950 to-blue-950">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(600px_300px_at_0%_0%,rgba(99,102,241,0.18),transparent_60%),radial-gradient(600px_300px_at_100%_100%,rgba(59,130,246,0.14),transparent_60%)]" />
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">About Me</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100">About Me</h2>
         <p className="mt-2 text-slate-300 max-w-2xl mx-auto">I'm a full stack developer passionate about building user-focused digital experiences that balance design, functionality, and performance.</p>
       </div>
       <div className="mt-10 grid gap-8 md:grid-cols-2 md:items-center">
-        <div className="justify-self-center">
+        <div className="justify-self-center w-full max-w-[280px] sm:max-w-[320px] mx-auto">
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_30px_-20px_rgba(255,255,255,0.25)]">
             {/* Use BASE_URL so it works with non-root deployments */}
-            <img src={`${import.meta.env.BASE_URL}profile-pic.png`} alt="Jayanta Barman — Software Engineer" className="w-full max-w-[280px] md:max-w-[320px] h-auto object-cover" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
+            <img src={`${import.meta.env.BASE_URL}profile-pic.png`} alt="Jayanta Barman — Software Engineer" className="w-full h-auto object-cover" onError={(e:any)=>{e.currentTarget.style.display='none'}} />
             {/* <div className="h-[360px] w-[280px] md:h-[420px] md:w-[320px] flex items-center justify-center text-slate-400" aria-hidden>Upload profile-pic.png</div> */}
           </div>
         </div>
         <div>
           <p className="text-slate-300 leading-relaxed">
-            Over the last <span className="font-semibold text-white">2+ years</span>, I’ve been working as a Full Stack Developer, building and maintaining projects that balance performance, scalability, and intuitive user experience. I focus on creating products that feel seamless yet deliver a strong impact — whether it’s a complex web application or a responsive client-facing platform.
+            Over the last <span className="font-semibold text-white">{experienceLabel}</span>, I’ve been working as a Full Stack Developer, building and maintaining projects that balance performance, scalability, and intuitive user experience. I focus on creating products that feel seamless yet deliver a strong impact — whether it’s a complex web application or a responsive client-facing platform.
           </p>
           <p className="mt-4 text-slate-300 leading-relaxed">
             Beyond coding, I enjoy collaborating with cross-functional teams, brainstorming new product ideas, and refining small details that elevate a good experience into a great one. My approach revolves around writing clean, maintainable, and efficient code that ensures long-term stability and growth for every project I work on.          
           </p>
 
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               {
                 label: 'Frontend Development',
@@ -621,17 +818,17 @@ function About() {
                 ),
               },
             ].map(({ label, icon }) => (
-              <div key={label} className="flex flex-col justify-center items-center text-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200">
+              <div key={label} className="flex flex-col justify-center items-center text-center gap-2 sm:gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-3 sm:px-4 text-slate-200">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-300">
                   {icon}
                 </span>
-                <span className="text-sm font-medium text-slate-100">{label}</span>
+                <span className="text-xs sm:text-sm font-medium text-slate-100 leading-snug">{label}</span>
               </div>
             ))}
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
         {[
-          { k: 'Years Experience', v: '2+' },
+          { k: 'Years Experience', v: experienceYearsStat },
           { k: 'Projects Delivered', v: '10+' },
           { k: 'Happy Clients', v: '1+' },
         ].map(({k,v}) => (
@@ -706,9 +903,9 @@ function Skills() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,15,26,0)_0%,rgba(10,15,26,0.28)_60%,rgba(10,15,26,0.4)_100%),radial-gradient(700px_500px_at_50%_0%,rgba(147,51,234,0.32),transparent_70%),radial-gradient(900px_600px_at_50%_110%,rgba(56,189,248,0.22),transparent_70%)]" />
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.4] bg-[radial-gradient(2px_2px_at_30%_15%,rgba(255,255,255,0.6),transparent_40%),radial-gradient(1.5px_1.5px_at_70%_12%,rgba(255,255,255,0.6),transparent_40%),radial-gradient(1.5px_1.5px_at_60%_45%,rgba(255,255,255,0.6),transparent_40%)]" />
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">Skills &amp; Specializations</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100">Skills &amp; Specializations</h2>
         <p className="mt-2 text-slate-300 max-w-2xl mx-auto text-sm md:text-base">A comprehensive overview of my technical skills and areas of expertise</p>
-        <div className="mt-5 flex justify-center gap-2" role="tablist" aria-label="Skills tabs">
+        <div className="mt-5 flex flex-wrap justify-center gap-2 px-1" role="tablist" aria-label="Skills tabs">
           {tabs.map((t)=> (
             <button
               key={t}
@@ -718,7 +915,7 @@ function Skills() {
               id={`tab-${t.replace(/\s+/g,'-').toLowerCase()}`}
               aria-controls={`panel-${t.replace(/\s+/g,'-').toLowerCase()}`}
               onClick={() => setActiveTab(t as typeof activeTab)}
-              className={`rounded-full border px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 focus-visible:ring-offset-0 ${activeTab===t
+              className={`rounded-full border px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 focus-visible:ring-offset-0 ${activeTab===t
                 ? 'bg-gradient-to-r from-violet-500/60 via-fuchsia-500/60 to-cyan-400/60 text-white border-transparent shadow hover:from-violet-500/70 hover:via-fuchsia-500/70 hover:to-cyan-400/70'
                 : 'bg-white/5 text-slate-200 border-white/10 hover:bg-white/10'}`}
             >
@@ -731,15 +928,15 @@ function Skills() {
         id={`panel-${activeTab.replace(/\s+/g,'-').toLowerCase()}`}
         role="tabpanel"
         aria-labelledby={`tab-${activeTab.replace(/\s+/g,'-').toLowerCase()}`}
-        className="relative overflow-hidden mt-8 rounded-3xl border border-white/10 bg-white/10 backdrop-blur-md shadow-[0_12px_50px_-20px_rgba(2,6,23,0.5)] p-6 md:p-8 ring-1 ring-white/10"
+        className="relative overflow-hidden mt-6 sm:mt-8 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/10 backdrop-blur-md shadow-[0_12px_50px_-20px_rgba(2,6,23,0.5)] p-4 sm:p-6 md:p-8 ring-1 ring-white/10"
       >
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(520px_320px_at_12%_0%,rgba(99,102,241,0.22),transparent_60%),radial-gradient(500px_340px_at_88%_8%,rgba(168,85,247,0.2),transparent_60%),radial-gradient(700px_520px_at_50%_115%,rgba(56,189,248,0.18),transparent_70%)]" />
-        <div key={activeTab} className="grid gap-8 md:grid-cols-2 md:items-center animate-fade-in-up">
+        <div key={activeTab} className="grid gap-6 sm:gap-8 md:grid-cols-2 md:items-center animate-fade-in-up">
           <div>
             <span className={`inline-flex items-center rounded-full border px-3 py-1 text-xs ${colors.badge}`}>{selected.badge}</span>
-            <h3 className="mt-3 text-2xl md:text-3xl font-bold text-slate-100">{selected.title}</h3>
+            <h3 className="mt-3 text-xl sm:text-2xl md:text-3xl font-bold text-slate-100">{selected.title}</h3>
             <p className="mt-2 text-slate-300 text-sm md:text-base">{selected.desc}</p>
-            <div className="mt-5 grid grid-cols-2 gap-y-2 md:gap-x-6">
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-y-2 sm:gap-x-6">
               {selected.list.map(item => (
                 <div key={item} className="flex items-start gap-2 text-slate-200">
                   <span className={`mt-1 inline-block h-1.5 w-1.5 rounded-full ${colors.dot}`}></span>
@@ -841,7 +1038,7 @@ function Services() {
       {/* Centered nebula glow */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[560px] w-[960px] rounded-full blur-2xl"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[320px] w-full max-w-[960px] sm:h-[440px] md:h-[560px] rounded-full blur-2xl"
           style={{
             background:
               'radial-gradient(700px 440px at center, rgba(168,85,247,0.28) 0%, rgba(99,102,241,0.24) 40%, rgba(34,211,238,0.18) 70%, transparent 78%)',
@@ -855,14 +1052,14 @@ function Services() {
         <div className="absolute -bottom-16 right-10 h-[380px] w-[380px] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.16),transparent_60%)]" />
       </div>
       <div className="text-center relative z-10">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-100">Services</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100">Services</h2>
         <p className="mt-2 text-slate-300 max-w-2xl mx-auto text-sm md:text-base">How I can help your team ship great products.</p>
       </div>
-      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch relative z-10">
+      <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch relative z-10">
         {services.map((s, i) => (
           <div
             key={s.title}
-            className="group relative h-full min-h-[200px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-6 shadow-[0_12px_50px_-20px_rgba(2,6,23,0.5)] ring-1 ring-white/10 transition-all hover:translate-y-[-2px] hover:ring-white/20 hover:shadow-[0_20px_60px_-20px_rgba(34,211,238,0.25)] animate-fade-in-up flex flex-col"
+            className="group relative h-full min-h-[180px] sm:min-h-[200px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md p-4 sm:p-6 shadow-[0_12px_50px_-20px_rgba(2,6,23,0.5)] ring-1 ring-white/10 transition-all hover:translate-y-[-2px] hover:ring-white/20 hover:shadow-[0_20px_60px_-20px_rgba(34,211,238,0.25)] animate-fade-in-up flex flex-col"
             style={{ animationDelay: `${i * 80}ms` }}
           >
             <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(420px_240px_at_0%_0%,rgba(99,102,241,0.08),transparent_60%),radial-gradient(420px_240px_at_100%_100%,rgba(34,211,238,0.08),transparent_60%)]" />

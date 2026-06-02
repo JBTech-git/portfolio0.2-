@@ -17,14 +17,15 @@
 a { font-weight: 500; color: #646cff; text-decoration: inherit; }
 a:hover { color: #535bf2; }
 
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   min-width: 320px;
-}
-
-h1 {
-  font-size: 4.2em;
-  line-height: 1.1;
+  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: light) {
@@ -72,10 +73,17 @@ h1 {
   content: "";
   position: absolute;
   top: 0;
-  width: 80px;
+  width: 40px;
   height: 100%;
   pointer-events: none;
   z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .marquee::before,
+  .marquee::after {
+    width: 80px;
+  }
 }
 
 .marquee::before { left: 0; background: linear-gradient(to right, rgba(11,18,32,1), rgba(11,18,32,0)); }

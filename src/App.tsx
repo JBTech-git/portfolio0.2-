@@ -560,17 +560,17 @@ function Hero() {
     <Section id="home" className="relative overflow-hidden min-h-0 py-16 sm:py-20 md:py-24 lg:py-28 flex items-center">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_50%_10%,rgba(99,102,241,0.08),transparent_60%)]" />
       <div className="mx-auto w-full max-w-[90vw] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl text-center px-4 sm:px-6">
-        <p className="text-sm sm:text-base lg:text-lg text-indigo-300/90 leading-relaxed max-w-xl mx-auto">
+        <p className="relative -top-3 sm:-top-4 md:-top-5 text-sm sm:text-base lg:text-lg text-indigo-300/90 leading-relaxed max-w-xl mx-auto">
           Namaste 🙏, I'm <span className="font-semibold text-white">Jayanta Barman</span>. A passionate software developer
         </p>
         <h1 className="mt-5 sm:mt-6 lg:mt-8 font-extrabold tracking-tight text-slate-100 flex flex-col items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-3.5">
-          <span className="block w-full text-[1.625rem] leading-[1.25] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.12] xl:text-[3.5rem] xl:leading-[1.1] text-balance">
+          <span className="block w-full text-[1.875rem] leading-[1.25] sm:text-[2.625rem] sm:leading-[1.2] md:text-[3.375rem] md:leading-[1.15] lg:text-[3.625rem] lg:leading-[1.12] xl:text-[4rem] xl:leading-[1.1] text-balance">
             Building Scalable Digital
           </span>
-          <span className="block w-full text-[1.625rem] leading-[1.25] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.12] xl:text-[3.5rem] xl:leading-[1.1] text-balance">
+          <span className="block w-full text-[1.875rem] leading-[1.25] sm:text-[2.625rem] sm:leading-[1.2] md:text-[3.375rem] md:leading-[1.15] lg:text-[3.625rem] lg:leading-[1.12] xl:text-[4rem] xl:leading-[1.1] text-balance">
             Experiences with
           </span>
-          <span className="block w-full font-['Playfair_Display'] text-[1.625rem] leading-[1.25] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.12] xl:text-[3.5rem] xl:leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 drop-shadow-[0_2px_14px_rgba(99,102,241,0.45)] text-balance px-1">
+          <span className="block w-full font-['Playfair_Display'] text-[1.875rem] leading-[1.25] sm:text-[2.625rem] sm:leading-[1.2] md:text-[3.375rem] md:leading-[1.15] lg:text-[3.625rem] lg:leading-[1.12] xl:text-[4rem] xl:leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 drop-shadow-[0_2px_14px_rgba(99,102,241,0.45)] text-balance px-1">
             Clean Code &amp; Seamless UX
           </span>
         </h1>

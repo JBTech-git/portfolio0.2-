@@ -557,23 +557,27 @@ function Hero() {
     }
   }
   return (
-    <Section id="home" className="relative overflow-hidden min-h-[80vh] sm:min-h-[90vh] md:min-h-screen flex items-center">
+    <Section id="home" className="relative overflow-hidden min-h-0 py-16 sm:py-20 md:py-24 lg:py-28 flex items-center">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_40%_at_50%_10%,rgba(99,102,241,0.08),transparent_60%)]" />
-      <div className="mx-auto w-full max-w-4xl text-center px-1 sm:px-0">
-        <p className="text-sm sm:text-base text-indigo-300/90 px-2">Namaste 🙏, I'm <span className="font-semibold text-white">Jayanta Barman</span>. A passionate software developer</p>
-        <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl leading-tight sm:leading-[1.1] font-extrabold tracking-tight text-slate-100 px-1">
-          Building Scalable Digital
-          <br className="hidden sm:block" />
-          <span className="sm:hidden"> </span>
-          Experiences with 
-          <br className="hidden sm:block" />
-          <span className="sm:hidden"> </span>
-          <span className="font-['Playfair_Display'] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 drop-shadow-[0_2px_14px_rgba(99,102,241,0.45)]">Clean Code &amp; Seamless UX</span>
+      <div className="mx-auto w-full max-w-[90vw] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl text-center px-4 sm:px-6">
+        <p className="text-sm sm:text-base lg:text-lg text-indigo-300/90 leading-relaxed max-w-xl mx-auto">
+          Namaste 🙏, I'm <span className="font-semibold text-white">Jayanta Barman</span>. A passionate software developer
+        </p>
+        <h1 className="mt-5 sm:mt-6 lg:mt-8 font-extrabold tracking-tight text-slate-100 flex flex-col items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-3.5">
+          <span className="block w-full text-[1.625rem] leading-[1.25] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.12] xl:text-[3.5rem] xl:leading-[1.1] text-balance">
+            Building Scalable Digital
+          </span>
+          <span className="block w-full text-[1.625rem] leading-[1.25] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.12] xl:text-[3.5rem] xl:leading-[1.1] text-balance">
+            Experiences with
+          </span>
+          <span className="block w-full font-['Playfair_Display'] text-[1.625rem] leading-[1.25] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.12] xl:text-[3.5rem] xl:leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400 drop-shadow-[0_2px_14px_rgba(99,102,241,0.45)] text-balance px-1">
+            Clean Code &amp; Seamless UX
+          </span>
         </h1>
-        <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto px-2">
+        <p className="mt-5 sm:mt-6 lg:mt-8 text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto text-pretty">
           A multidisciplinary engineer crafting digital experiences that resonate with culture, emotion, and efficiency.
         </p>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-7 sm:mt-8 lg:mt-10 flex justify-center">
           <motion.a
             href={resumePdf}
             download="Jayanta_Barman_Resume.pdf"
@@ -587,7 +591,7 @@ function Hero() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-white"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 1 1 8.293 11.293L10.586 13.586V4a1 1 0 0 1 1-1ZM5 20a1 1 0 0 1 0-2h14a1 1 0 1 1 0 2H5Z"/></svg>
           </motion.a>
         </div>
-        <div className="mt-6 flex flex-col items-center justify-center gap-3 text-slate-400 pb-12 sm:pb-20">
+        <div className="mt-6 sm:mt-8 flex flex-col items-center justify-center gap-3 text-slate-400 pb-8 sm:pb-12 lg:pb-16">
           <span className="text-base sm:text-lg font-bold">Find me on</span>
           <div className="flex items-center gap-2">
             <a aria-label="GitHub" href="https://github.com/JBTech-git" target="_blank" rel="noreferrer noopener" className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-gradient-to-r from-violet-500/20 to-cyan-400/20 shadow-sm hover:from-violet-500/30 hover:to-cyan-400/30">
@@ -604,7 +608,7 @@ function Hero() {
             </a>
           </div>
         </div>
-        <div className="mt-10 marquee">
+        <div className="mt-8 sm:mt-10 lg:mt-12 marquee">
           <div className="marquee-inner gap-3">
             {[...skills, ...skills].map((s, i) => (
               <span

@@ -31,8 +31,25 @@ function formatExperienceDuration({ years, months }: { years: number; months: nu
 }
 
 function formatExperienceYearsStat({ years, months }: { years: number; months: number }) {
-  if (years === 0) return months > 0 ? '< 1' : '0'
-  return months > 0 ? `${years}+` : `${years}`
+  const totalMonths = years * 12 + months
+  if (totalMonths < 12) return '< 1'
+  const fullYears = Math.floor(totalMonths / 12)
+  const remainingMonths = totalMonths % 12
+  return remainingMonths > 0 ? `${fullYears}+` : String(fullYears)
+}
+
+function useCareerExperience() {
+  const [experience, setExperience] = useState(() => getExperienceDuration())
+
+  useEffect(() => {
+    setExperience(getExperienceDuration())
+  }, [])
+
+  return {
+    experience,
+    label: formatExperienceDuration(experience),
+    yearsStat: formatExperienceYearsStat(experience),
+  }
 }
 
 const SCHEDULE_CALL_URL =
@@ -748,9 +765,7 @@ function Projects() {
 }
 
 function About() {
-  const experience = getExperienceDuration()
-  const experienceLabel = formatExperienceDuration(experience)
-  const experienceYearsStat = formatExperienceYearsStat(experience)
+  const { label: experienceLabel, yearsStat: experienceYearsStat } = useCareerExperience()
 
   return (
     <Section id="about" className="relative overflow-hidden bg-gradient-to-b from-indigo-950 via-slate-950 to-blue-950">
@@ -837,7 +852,12 @@ function About() {
           { k: 'Happy Clients', v: '1+' },
         ].map(({k,v}) => (
           <div key={k} className="text-center">
-            <div className="text-3xl font-extrabold text-white">{v}</div>
+            <div
+              className="text-3xl font-extrabold text-white"
+              aria-label={k === 'Years Experience' ? `${experienceLabel} of professional experience` : undefined}
+            >
+              {v}
+            </div>
             <div className="mt-1 text-sm text-slate-400">{k}</div>
           </div>
         ))}

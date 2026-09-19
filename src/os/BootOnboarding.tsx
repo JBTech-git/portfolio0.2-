@@ -80,7 +80,7 @@ export function BootOnboarding({ onChoose, onContinue, returning }: Props) {
             animate={{ opacity: 1, y: 0 }}
             className="relative z-10 w-full max-w-md rounded-2xl border border-[#16C60C]/25 bg-[#0C0C0C]/95 p-6 shadow-2xl backdrop-blur sm:p-8"
           >
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#16C60C]">JAYANTA OS</p>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#16C60C]">JAYANTA PORTFOLIO</p>
             <h1 className="mt-2 text-2xl font-bold text-[#F2F2F2] sm:text-3xl">{profile.name}</h1>
             <p className="mt-1 text-sm text-[#767676]">{profile.role}</p>
             <p className="mt-4 text-sm leading-relaxed text-[#CCCCCC]">

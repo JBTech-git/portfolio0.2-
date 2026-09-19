@@ -13,6 +13,7 @@ export const profile = {
   github: 'https://github.com/JBTech-git',
   linkedin: 'https://www.linkedin.com/in/jayanta-barman-747298211',
   site: 'https://jayanta-barman.vercel.app/',
+  resumeBuilder: 'https://resumeiopro.vercel.app/',
   primaryStack: ['Python', 'Django', 'React', 'PostgreSQL', 'Docker', 'TypeScript'],
   focus: 'Backend / Full Stack Development',
   summary:

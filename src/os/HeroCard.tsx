@@ -293,7 +293,7 @@ export function HeroCard({
         </span>
         <span className="flex shrink-0 items-center gap-1.5 text-[#13A10E]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#16C60C]" />
-          JAYANTA OS
+          JAYANTA PORTFOLIO
         </span>
       </div>
 

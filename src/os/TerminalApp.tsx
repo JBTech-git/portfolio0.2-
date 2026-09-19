@@ -100,7 +100,11 @@ function runCommand(raw: string): string[] {
     ]
   }
   if (cmd === 'github') return [`Opening: ${profile.github}`, '(Use the Contact / Resume apps for quick links.)']
-  if (cmd === 'resume') return ['Open the Resume app, or use Download PDF from Recruiter Mode.']
+  if (cmd === 'resume')
+    return [
+      'Open the Resume app, or Download PDF from Recruiter Mode.',
+      'Free ATS + AI resume builder: https://resumeiopro.vercel.app/',
+    ]
   if (cmd === 'ai') return ['DEV-AI online. Open the DEV-AI app, or ask: who is Jayanta?']
   if (cmd === 'sudo hire jayanta') {
     return [
@@ -124,7 +128,7 @@ function runCommand(raw: string): string[] {
 
 export function TerminalApp({ onOpenAi }: { onOpenAi?: () => void }) {
   const [lines, setLines] = useState<string[]>([
-    `${profile.hostname}:~$ Welcome to JAYANTA OS`,
+    `${profile.hostname}:~$ Welcome to JAYANTA PORTFOLIO`,
     "Type 'help' to list commands.",
     '',
   ])

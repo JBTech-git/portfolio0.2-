@@ -295,6 +295,7 @@ REQUESTS   1,245,823`}</pre>
             Download PDF
           </a>
         </div>
+
         <section>
           <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Profile</h4>
           <p className="mt-1 text-slate-300">{profile.summary}</p>
@@ -330,6 +331,34 @@ REQUESTS   1,245,823`}</pre>
               ))}
           </ul>
         </section>
+
+        <a
+          href={profile.resumeBuilder}
+          target="_blank"
+          rel="noreferrer"
+          className="no-link-tint block rounded-xl border border-[#16C60C]/35 bg-[#1C2E26]/50 p-4 transition hover:border-[#16C60C]/60 hover:bg-[#1C2E26]/80"
+        >
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-wide text-[#13A10E]">
+                Free AI resume builder
+              </div>
+              <div className="mt-1 text-sm font-semibold text-[#F2F2F2]">
+                Create / edit an ATS-friendly resume
+              </div>
+              <p className="mt-1.5 text-xs leading-relaxed text-[#CCCCCC]">
+                Build or update your resume with AI — ATS-friendly formatting, free to use on{' '}
+                Resume Genius AI.
+              </p>
+            </div>
+            <span className="shrink-0 rounded-full bg-[#16C60C] px-3 py-1.5 text-xs font-semibold text-[#0A0A0A]">
+              Open tool →
+            </span>
+          </div>
+          <div className="mt-2 font-mono text-[10px] text-[#16C60C]/80">
+            resumeiopro.vercel.app
+          </div>
+        </a>
       </div>
     )
   }

@@ -55,4 +55,3 @@ export const ADVANCED_APPS = DESKTOP_APPS.filter((a) => !a.simple)
 export const STORAGE_MODE_KEY = 'jayanta-os-mode'
 export const STORAGE_ONBOARD_KEY = 'jayanta-os-onboarded-v2'
 export const STORAGE_MOTION_KEY = 'jayanta-os-reduce-motion'
-export const STORAGE_TIP_KEY = 'jayanta-os-tip-seen-v2'

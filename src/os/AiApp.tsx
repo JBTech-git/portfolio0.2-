@@ -35,7 +35,7 @@ function answer(q: string): string {
     return `Jayanta brings ${years} years of hands-on full-stack delivery, real production work at Leelija Web Solution, and a product mindset (UX + maintainable code). Explore Terminal (sudo hire jayanta), Projects Lab, and Resume for evidence—not hype.`
   }
   if (/resume|cv/.test(s)) {
-    return 'Open the Resume app for a structured view, or use Recruiter Mode → Download PDF. Resume file ships with the portfolio.'
+    return 'Open the Resume app for a structured view or Download PDF. Visitors can also create/edit an ATS-friendly AI resume for free at https://resumeiopro.vercel.app/'
   }
   if (/contact|email|reach|whatsapp|linkedin/.test(s)) {
     return `Email: ${profile.email}\nPhone: ${profile.phone}\nGitHub: ${profile.github}\nLinkedIn: ${profile.linkedin}\nWhatsApp: ${profile.whatsapp}`

@@ -16,7 +16,6 @@ import { PageScanner } from './PageScanner'
 import {
   DESKTOP_APPS,
   SIMPLE_APPS,
-  STORAGE_TIP_KEY,
   type AppId,
   type WindowState,
 } from './types'
@@ -52,7 +51,6 @@ export function JayantaOS({
   const [zTop, setZTop] = useState(10)
   const [palette, setPalette] = useState(false)
   const [mobileApp, setMobileApp] = useState<AppId | null>(null)
-  const [showTip, setShowTip] = useState(false)
   const [heroDone, setHeroDone] = useState(false)
   const [shellDone, setShellDone] = useState(false)
   const [logoReady, setLogoReady] = useState(false)
@@ -68,12 +66,6 @@ export function JayantaOS({
   const [isDesktop, setIsDesktop] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia('(min-width: 768px)').matches : true
   )
-
-  useEffect(() => {
-    if (localStorage.getItem(STORAGE_TIP_KEY) !== '1') {
-      setShowTip(true)
-    }
-  }, [])
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)')
@@ -117,17 +109,10 @@ export function JayantaOS({
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  const dismissTip = useCallback(() => {
-    setShowTip(false)
-    localStorage.setItem(STORAGE_TIP_KEY, '1')
-  }, [])
-
   const openApp = useCallback(
     (appId: AppId) => {
       const meta = DESKTOP_APPS.find((a) => a.id === appId)
       if (!meta) return
-      setShowTip(false)
-      localStorage.setItem(STORAGE_TIP_KEY, '1')
 
       if (window.matchMedia('(max-width: 767px)').matches) {
         setMobileApp(appId)
@@ -346,26 +331,6 @@ export function JayantaOS({
           </div>
         </div>
       </header>
-
-      {/* Tip for first-time visitors */}
-      {showTip && (
-        <div className="relative z-50 mx-auto mt-3 max-w-lg px-4">
-          <div className="flex items-start gap-3 rounded-xl border border-[#16C60C]/30 bg-[#1C2E26]/80 px-4 py-3 text-sm text-[#CCCCCC]">
-            <p className="flex-1">
-              <strong className="font-semibold text-[#3FF23F]">How to use:</strong> use the top menu or left sidebar — same options.
-              Close any window with Close.
-            </p>
-            <button
-              type="button"
-              onClick={dismissTip}
-              className="shrink-0 rounded-md px-2 py-0.5 text-xs text-[#16C60C] hover:bg-[#0A0A0A]/40"
-              aria-label="Dismiss tip"
-            >
-              Got it
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Desktop */}
       {isDesktop ? (

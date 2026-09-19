@@ -43,20 +43,32 @@ function centeredSize(defaultSize: { w: number; h: number }, offset = 0) {
 export function JayantaOS({
   technical: _technical = false,
   onModeChange,
+  initialAppId = null,
+  onInitialAppConsumed,
+  skipIntro = false,
 }: {
   technical?: boolean
   onModeChange: (mode: 'recruiter' | 'classic' | 'explore' | 'technical') => void
+  initialAppId?: AppId | null
+  onInitialAppConsumed?: () => void
+  /** Skip boot animations when opening from Hiring */
+  skipIntro?: boolean
 }) {
+  const reduceMotion = useReducedMotion()
+  /** Lock skip for this mount so clearing pendingAppId cannot restart intro/scan */
+  const skipLocked = useRef(skipIntro || Boolean(initialAppId))
+  if (skipIntro || initialAppId) skipLocked.current = true
+  const instant = skipLocked.current || !!reduceMotion
+
   const [windows, setWindows] = useState<WindowState[]>([])
   const [zTop, setZTop] = useState(10)
   const [palette, setPalette] = useState(false)
   const [mobileApp, setMobileApp] = useState<AppId | null>(null)
-  const [heroDone, setHeroDone] = useState(false)
-  const [shellDone, setShellDone] = useState(false)
-  const [logoReady, setLogoReady] = useState(false)
+  const [heroDone, setHeroDone] = useState(instant)
+  const [shellDone, setShellDone] = useState(instant)
+  const [logoReady, setLogoReady] = useState(instant)
   const [scanning, setScanning] = useState(false)
-  const [backdropReady, setBackdropReady] = useState(false)
-  const reduceMotion = useReducedMotion()
+  const [backdropReady, setBackdropReady] = useState(instant)
   const years = formatYearsStat(getExperienceDuration())
   const navReady = heroDone || !!reduceMotion
   const brandReady = shellDone || !!reduceMotion
@@ -77,6 +89,14 @@ export function JayantaOS({
 
   // After left text + right buttons appear, start page scan (Jarvis keeps loading)
   useEffect(() => {
+    if (instant) {
+      setLogoReady(true)
+      setBackdropReady(true)
+      setScanning(false)
+      return
+    }
+    // Already revealed (e.g. opened from Hiring) — never re-run scan
+    if (backdropReady) return
     if (reduceMotion) {
       setLogoReady(true)
       setBackdropReady(true)
@@ -85,7 +105,7 @@ export function JayantaOS({
     if (!shellDone) return
     const t = window.setTimeout(() => setScanning(true), 1050)
     return () => window.clearTimeout(t)
-  }, [shellDone, reduceMotion])
+  }, [shellDone, reduceMotion, instant, backdropReady])
 
   // Scan done → stop Jarvis loader, show logo, reveal background
   const finishScan = useCallback(() => {
@@ -149,6 +169,12 @@ export function JayantaOS({
     },
     [zTop]
   )
+
+  useEffect(() => {
+    if (!initialAppId) return
+    openApp(initialAppId)
+    onInitialAppConsumed?.()
+  }, [initialAppId, openApp, onInitialAppConsumed])
 
   const focus = (id: string) => {
     setZTop((z) => {
@@ -344,6 +370,7 @@ export function JayantaOS({
             openApp={openApp}
             onComplete={() => setHeroDone(true)}
             constraintsRef={heroBoundsRef}
+            instant={instant}
           />
         </div>
 
@@ -393,12 +420,14 @@ export function JayantaOS({
             onComplete={() => setHeroDone(true)}
             constraintsRef={mobileBoundsRef}
             staticExtras
+            instant={instant}
           />
         </div>
         <MobileAppGrid
           start={heroDone}
           openApp={openApp}
           onComplete={() => setShellDone(true)}
+          instant={instant}
         />
         <motion.button
           type="button"
@@ -422,6 +451,7 @@ export function JayantaOS({
           openApp={openApp}
           itemClassName={(id) => navBtnClass(id, true)}
           onComplete={() => setShellDone(true)}
+          instant={instant}
         />
       ) : null}
 

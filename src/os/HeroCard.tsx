@@ -115,6 +115,7 @@ export function HeroCard({
   onComplete,
   constraintsRef,
   staticExtras = false,
+  instant = false,
 }: {
   years: string
   openApp: (id: AppId) => void
@@ -122,14 +123,16 @@ export function HeroCard({
   constraintsRef?: RefObject<HTMLElement | null>
   /** Mobile: hide badges + CTA buttons in the hero card */
   staticExtras?: boolean
+  /** Skip intro animation (e.g. opened from Hiring) */
+  instant?: boolean
 }) {
   const reduceMotion = useReducedMotion()
-  const [phase, setPhase] = useState<Phase>(() => (reduceMotion ? 'done' : 'prompt'))
+  const [phase, setPhase] = useState<Phase>(() => (reduceMotion || instant ? 'done' : 'prompt'))
   const cardRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ w: 0, h: 0 })
   const completedRef = useRef(false)
   const dragControls = useDragControls()
-  const canDrag = phase === 'done' || !!reduceMotion
+  const canDrag = phase === 'done' || !!reduceMotion || instant
 
   useEffect(() => {
     if (phase !== 'done' || completedRef.current) return

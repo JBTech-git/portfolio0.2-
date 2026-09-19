@@ -19,24 +19,26 @@ export function MobileAppGrid({
   start,
   openApp,
   onComplete,
+  instant = false,
 }: {
   start: boolean
   openApp: (id: AppId) => void
   onComplete?: () => void
+  instant?: boolean
 }) {
   const reduceMotion = useReducedMotion()
-  const [phase, setPhase] = useState<Phase>('idle')
+  const [phase, setPhase] = useState<Phase>(() => (instant || reduceMotion ? 'done' : 'idle'))
   const appearOrder = useMemo(() => shuffleOrder(SIMPLE_APPS.length), [])
   const completedRef = useRef(false)
 
   useEffect(() => {
     if (!start) return
-    if (reduceMotion) {
+    if (reduceMotion || instant) {
       setPhase('done')
       return
     }
     setPhase((p) => (p === 'idle' ? 'items' : p))
-  }, [start, reduceMotion])
+  }, [start, reduceMotion, instant])
 
   useEffect(() => {
     if (phase !== 'done' || completedRef.current) return

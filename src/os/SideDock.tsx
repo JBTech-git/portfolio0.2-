@@ -50,15 +50,17 @@ export function SideDock({
   openApp,
   itemClassName,
   onComplete,
+  instant = false,
 }: {
   start: boolean
   activeAppId: AppId | null
   openApp: (id: AppId) => void
   itemClassName: (id: AppId) => string
   onComplete?: () => void
+  instant?: boolean
 }) {
   const reduceMotion = useReducedMotion()
-  const [phase, setPhase] = useState<Phase>('idle')
+  const [phase, setPhase] = useState<Phase>(() => (instant || reduceMotion ? 'done' : 'idle'))
   const shellRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ w: 0, h: 0 })
   const appearOrder = useMemo(() => shuffleOrder(SIMPLE_APPS.length), [])
@@ -66,12 +68,12 @@ export function SideDock({
 
   useEffect(() => {
     if (!start) return
-    if (reduceMotion) {
+    if (reduceMotion || instant) {
       setPhase('done')
       return
     }
     setPhase((p) => (p === 'idle' ? 'items' : p))
-  }, [start, reduceMotion])
+  }, [start, reduceMotion, instant])
 
   useEffect(() => {
     if (phase !== 'done' || completedRef.current) return

@@ -1,0 +1,91 @@
+export const skillGroups = {
+  Frontend: [
+    'React',
+    'JavaScript',
+    'TypeScript',
+    'Tailwind CSS & Styled Components',
+    'Redux & Context API',
+    'Responsive Design',
+    'Framer Motion & GSAP',
+    'HTML5 & CSS3',
+    'UI/UX Implementation',
+  ],
+  Backend: [
+    'Python & Django',
+    'FastAPI',
+    'Node.js & Express',
+    'REST APIs',
+    'Third-party API Integration',
+    'SMS Integration',
+    'Auto Payment / Payments',
+    'SQL & MongoDB',
+    'Authentication & Authorization',
+    'Caching & Queues (Redis)',
+    'Testing',
+    'Deployment & CI/CD',
+  ],
+  SoftSkills: [
+    'Team Collaboration',
+    'Communication',
+    'Problem Solving',
+    'Agile & Scrum',
+    'Mentoring & Knowledge Sharing',
+    'Stakeholder Management',
+    'Ownership & Accountability',
+    'Documentation',
+  ],
+  Infrastructure: ['Docker', 'Linux', 'Git', 'CI/CD', 'AWS'],
+} as const
+
+export const skillMarquee = [
+  'React',
+  'Next.js',
+  'TypeScript',
+  'JavaScript',
+  'Node.js',
+  'Express',
+  'REST APIs',
+  'GraphQL',
+  'PostgreSQL',
+  'MongoDB',
+  'Prisma',
+  'Tailwind CSS',
+  'Redux',
+  'Jest',
+  'CI/CD',
+  'Docker',
+  'AWS',
+] as const
+
+export const architectureNodes = [
+  {
+    id: 'client',
+    label: 'Client',
+    detail: 'Browser / SPA consuming APIs and rendering UI.',
+  },
+  {
+    id: 'nginx',
+    label: 'Nginx',
+    detail: 'Reverse proxy, TLS termination, static asset serving.',
+  },
+  {
+    id: 'app',
+    label: 'Application',
+    detail: 'Django / Node application servers handling business logic.',
+  },
+  {
+    id: 'api',
+    label: 'REST API',
+    detail: 'Versioned HTTP endpoints for clients and integrations.',
+  },
+  {
+    id: 'redis',
+    label: 'Redis',
+    detail: 'Caching, sessions, and async task queues to reduce DB load.',
+  },
+  {
+    id: 'db',
+    label: 'PostgreSQL',
+    detail: 'Primary relational store for durable application data.',
+  },
+] as const

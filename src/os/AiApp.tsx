@@ -150,7 +150,7 @@ export function AiApp() {
         {msgs.map((m, i) => (
           <div
             key={i}
-            className={`max-w-[95%] whitespace-pre-wrap rounded-lg px-3 py-2 text-sm ${
+            className={`max-w-[60%] whitespace-pre-wrap rounded-lg px-3 py-2 text-sm ${
               m.role === 'user' ? 'ml-auto bg-[#16C60C]/25 text-[#E8FFE8]' : 'bg-white/5 text-slate-200'
             }`}
           >

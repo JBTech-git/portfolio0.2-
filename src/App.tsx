@@ -47,7 +47,7 @@ export default function App() {
   }
 
   if (showBoot) {
-    return (
+  return (
       <BootOnboarding
         returning={returning}
         onChoose={(m) => finishBoot(m)}
@@ -57,7 +57,7 @@ export default function App() {
   }
 
   if (mode === 'classic') {
-    return (
+  return (
       <div className="relative">
         <div className="sticky top-0 z-[70] flex items-center justify-between border-b border-white/10 bg-slate-950/90 px-3 py-2 text-xs text-slate-300 backdrop-blur">
           <span>Simple website view</span>

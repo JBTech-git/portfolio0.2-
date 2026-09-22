@@ -7,12 +7,48 @@ import { askGemini, hasGeminiKey } from '../lib/gemini'
 
 type Msg = { role: 'user' | 'assistant'; text: string }
 
-const OFF_TOPIC =
-  'DEV-AI only answers questions about Jayanta — his skills, projects, experience, resume, or contact.'
+const DEV_AI_SCOPE =
+  'skills, projects, experience, qualifications, education, background, interests, resume, contact, and other portfolio-related topics'
+
+const OFF_TOPIC = `DEV-AI only answers questions about Jayanta Barman — his ${DEV_AI_SCOPE}.`
+
+function isGreeting(q: string) {
+  const s = q.trim().toLowerCase().replace(/[!?.…]+$/g, '')
+  return /^(hi|hello|hey|hiya|howdy|greetings|yo|sup|what'?s up|good\s+(morning|afternoon|evening|night)|how\s+are\s+you|how\s+r\s+u|how\s+do\s+you\s+do|nice\s+to\s+meet\s+you)$/.test(
+    s,
+  )
+}
+
+function greetingReply(q: string): string {
+  const s = q.trim().toLowerCase()
+
+  if (/how are you|how r u|how do you do/.test(s)) {
+    return `I'm doing great, thanks for asking! I'm DEV-AI — ${profile.name}'s portfolio assistant. Happy to help you explore his skills, qualifications, projects, experience, or how to reach him. What would you like to know?`
+  }
+  if (/good morning/.test(s)) {
+    return `Good morning! ☀️ Welcome to ${profile.name}'s portfolio. I'm DEV-AI — ask me about his stack, qualifications, projects, career, or contact info.`
+  }
+  if (/good afternoon/.test(s)) {
+    return `Good afternoon! Welcome — I'm DEV-AI. I can tell you about ${profile.name}'s skills, education, projects, experience, or how to get in touch.`
+  }
+  if (/good evening|good night/.test(s)) {
+    return `Good evening! Glad you're here. I'm DEV-AI — happy to walk you through ${profile.name}'s work, qualifications, tech stack, or resume. What interests you?`
+  }
+  if (/nice to meet you/.test(s)) {
+    return `Nice to meet you too! I'm DEV-AI. Ask me anything about ${profile.name} — his qualifications, projects, experience, skills, or contact details.`
+  }
+
+  const welcomes = [
+    `Hey! 👋 Welcome — I'm DEV-AI, ${profile.name}'s portfolio assistant. Ask me about his skills, qualifications, education, projects, experience, resume, or contact info.`,
+    `Hello! Nice to have you here. I can help you learn about ${profile.name}'s background, stack, career, and more. What would you like to know?`,
+    `Hi there! Glad you stopped by. I'm DEV-AI — tell me what you'd like to explore: his qualifications, experience, technologies, projects, or how to reach him.`,
+  ]
+  return welcomes[Math.floor(Math.random() * welcomes.length)]
+}
 
 function isJayantaRelated(q: string) {
   const s = q.toLowerCase()
-  return /\bjayanta\b|\bbarman\b|\b(he|his|him)\b|who is|who are you|skill|technolog|stack|project|portfolio|experience|career|employ|hire|interview|resume|\bcv\b|contact|email|phone|whatsapp|linkedin|github|docker|architect|education|django|react|fastapi|postgres|\bsql\b|python/.test(
+  return /\bjayanta\b|\bbarman\b|\b(he|his|him)\b|who is|who are you|tell me about|about him|skill|technolog|stack|project|portfolio|experience|career|employ|hire|interview|resume|\bcv\b|contact|email|phone|whatsapp|linkedin|github|docker|architect|education|qualif|degree|\bbca\b|\bmca\b|universit|college|stud(y|ied|ies)|background|bio|summary|where.*(live|based|from)|location|kolkata|interest|explor|soft.?skill|strength|leelija|intern|company|employer|role|developer|full.?stack|backend|django|react|fastapi|postgres|\bsql\b|python|node\.?js|javascript|typescript|client|delivered/.test(
     s,
   )
 }
@@ -22,8 +58,32 @@ function localAnswer(q: string): string {
   const exp = getExperienceDuration()
   const years = formatYearsStat(exp)
 
-  if (/who is|about jayanta|who are you/.test(s)) {
-    return `${profile.name} is a ${profile.role} based in ${profile.location} with ${formatExperienceLabel(exp)} of experience. Focus: ${profile.focus}. Stack: ${profile.primaryStack.join(', ')}.`
+  if (/who is|about jayanta|who are you|tell me about|background|bio|summary/.test(s)) {
+    return `${profile.name} is a ${profile.role} based in ${profile.location} with ${formatExperienceLabel(exp)} of experience.\n\nFocus: ${profile.focus}\nStack: ${profile.primaryStack.join(', ')}\n\n${profile.summary}\n\n${profile.humanAbout.join('\n')}`
+  }
+  if (/qualif|education|degree|\bbca\b|\bmca\b|universit|college|stud(y|ied|ies)/.test(s)) {
+    return experience
+      .filter((e) => e.type === 'education')
+      .map((e) => `${e.dates}: ${e.role} @ ${e.org} (${e.location}) — ${e.desc}`)
+      .join('\n')
+  }
+  if (/where.*(live|based|from)|location|kolkata/.test(s)) {
+    return `${profile.name} is based in ${profile.location}.`
+  }
+  if (/interest|explor/.test(s)) {
+    return `Currently exploring:\n${profile.exploring.map((item) => `• ${item}`).join('\n')}`
+  }
+  if (/soft.?skill|strength|collaborat|communicat|problem.?solv/.test(s)) {
+    return `Soft skills: ${skillGroups.SoftSkills.join(', ')}.`
+  }
+  if (/leelija|company|employer|intern/.test(s)) {
+    return experience
+      .filter((e) => e.type === 'work')
+      .map((e) => `${e.dates}: ${e.role} @ ${e.org} (${e.location}) — ${e.desc}`)
+      .join('\n')
+  }
+  if (/stat|delivered|client/.test(s)) {
+    return `Projects delivered: ${profile.stats.projectsDelivered}\nHappy clients: ${profile.stats.happyClients}`
   }
   if (/technolog|stack|skills|django|react|docker|python/.test(s)) {
     return `Primary technologies: ${profile.primaryStack.join(', ')}.\n\nBackend highlights: ${skillGroups.Backend.slice(0, 5).join(', ')}.\nFrontend highlights: ${skillGroups.Frontend.slice(0, 5).join(', ')}.\nInfra: ${skillGroups.Infrastructure.join(', ')}.`
@@ -54,11 +114,12 @@ function localAnswer(q: string): string {
   if (/docker/.test(s)) {
     return 'Docker appears in Jayanta’s infrastructure skill set and project tooling (CI/CD, containerized deploys). Open Skills → Infrastructure and Architecture Lab for context.'
   }
-  return `I can help with portfolio facts.\nTry: Who is Jayanta? | Show projects | Django experience | Contact | Resume | Why interview him?`
+  return `I can help with portfolio facts about Jayanta.\nTry: Who is Jayanta? | His qualifications | Show projects | Work experience | Contact | Resume | Why interview him?`
 }
 
 const SUGGESTIONS = [
   'Who is Jayanta?',
+  'What are his qualifications?',
   'What technologies does he use?',
   'Show me his strongest projects.',
   'Explain his experience.',
@@ -73,8 +134,8 @@ export function AiApp() {
     {
       role: 'assistant',
       text: geminiReady
-        ? 'DEV-AI online. Ask about Jayanta’s skills, projects, experience, or contact.'
-        : 'DEV-AI online. Ask about Jayanta’s skills, projects, experience, or contact.',
+        ? `DEV-AI online. Ask about Jayanta’s ${DEV_AI_SCOPE}.`
+        : `DEV-AI online. Ask about Jayanta’s ${DEV_AI_SCOPE}.`,
     },
   ])
   const [input, setInput] = useState('')
@@ -94,7 +155,9 @@ export function AiApp() {
     })
 
     let reply: string
-    if (!isJayantaRelated(q)) {
+    if (isGreeting(q)) {
+      reply = greetingReply(q)
+    } else if (!isJayantaRelated(q)) {
       reply = OFF_TOPIC
     } else try {
       if (geminiReady) {

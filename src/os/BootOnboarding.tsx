@@ -6,7 +6,7 @@ import type { ExperienceMode } from './types'
 const BOOT_LINES = [
   'Initializing developer environment...',
   'Loading kernel modules...',
-  'Connecting to DEV-AI (local mock)...',
+  'Connecting to DEV-AI (Gemini)...',
   'Mounting projects/',
   'Loading experience.log...',
   'Loading system architecture...',

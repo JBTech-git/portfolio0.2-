@@ -14,7 +14,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/jayanta-barman-747298211',
   site: 'https://jayanta-barman.vercel.app/',
   resumeBuilder: 'https://resumeiopro.vercel.app/',
-  primaryStack: ['Python', 'Django', 'React', 'PostgreSQL', 'Docker', 'TypeScript'],
+  primaryStack: ['Python', 'Django', 'FastAPI', 'SQL', 'PostgreSQL', 'Docker', 'JavaScript', 'React'],
   focus: 'Backend / Full Stack Development',
   summary:
     'Full stack developer building user-focused digital experiences that balance design, functionality, and performance.',
